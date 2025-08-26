@@ -1,34 +1,18 @@
 {
-  // Display name for the site owner
   "name": "Jane Doe",
-  // Short tagline shown on the homepage hero section
   "tagline": "Researcher, educator, and designer",
-  // Phrases for the homepage typing animation
   "typedItems": ["Educator", "Researcher", "Designer", "Advocate"],
-  // Short blurb for the About section on the home page
   "about": "I am an aspiring learning scientist and experience designer with dreams of designing enabling, critical, and multimodal learning environments that recognize and honor youths' bodies.",
-  // Social media profile links control the icons in the navigation.
-  // Remove a URL or leave it blank to hide its icon.
   "social": {
-    // Bluesky icon
     "bluesky": "https://bsky.app/profile/example.bsky.social",
-    // Twitter icon
     "twitter": "https://twitter.com/example",
-    // Google Scholar icon
     "google_scholar": "https://scholar.google.com/",
-    // GitHub icon
     "github": "https://github.com/example",
-    // LinkedIn icon
     "linkedin": "https://www.linkedin.com/in/example/"
   },
-  // Contact email addresses displayed in the navigation footer.
-  // Remove an address or leave it blank to hide that line.
   "contact": {
-    // Academic email line
     "academic": "academic@example.edu",
-    // Industry email line
     "industry": "industry@example.com"
   },
-  // Google Analytics ID (e.g., G-XXXXXXXXXX). Remove this field to disable analytics.
   "analyticsId": ""
 }
