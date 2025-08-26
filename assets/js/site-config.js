@@ -53,8 +53,6 @@ function applySiteConfig() {
     typed.setAttribute('data-typed-items', siteConfig.typedItems.join(', '));
   }
 
-  const aboutText = document.getElementById('about-text');
-  if (aboutText && siteConfig.about) aboutText.textContent = siteConfig.about;
 
   if (siteConfig.social) {
     const socialMap = {

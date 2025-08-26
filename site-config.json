@@ -5,8 +5,6 @@
   "tagline": "Researcher, educator, and designer",
   // Phrases for the homepage typing animation
   "typedItems": ["Educator", "Researcher", "Designer", "Advocate"],
-  // Short blurb for the About section on the home page
-  "about": "I am an aspiring learning scientist and experience designer with dreams of designing enabling, critical, and multimodal learning environments that recognize and honor youths' bodies.",
   // Social media profile links control the icons in the navigation.
   // Remove a URL or leave it blank to hide its icon.
   "social": {

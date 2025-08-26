@@ -42,10 +42,9 @@ This website serves multiple roles:
    - Replace placeholder values with your own site details.
    - Top-level fields include:
      - `name`: Display name for the site owner.
-     - `tagline`: Short tagline shown on the homepage hero section.
-     - `typedItems`: Array of phrases for the homepage typing animation.
-     - `about`: Blurb for the “About” section on the home page.
-     - `social`: Links for social media icons (keys: `bluesky`, `twitter`, `google_scholar`, `github`, `linkedin`).
+    - `tagline`: Short tagline shown on the homepage hero section.
+    - `typedItems`: Array of phrases for the homepage typing animation.
+    - `social`: Links for social media icons (keys: `bluesky`, `twitter`, `google_scholar`, `github`, `linkedin`).
      - `contact`: Email addresses shown in the navigation footer (`academic`, `industry`).
      - `analyticsId`: Google Analytics ID (e.g., `G-XXXXXXXXXX`). Remove this field to disable tracking.
    - Example:
@@ -55,8 +54,6 @@ This website serves multiple roles:
      "name": "Jane Doe",
      // Short tagline shown on the homepage hero section
      "tagline": "Data Scientist",
-     // Short blurb for the About section on the home page
-     "about": "I explore data-driven solutions to social problems.",
      "typedItems": ["Scientist", "Teacher"],
      // Social media profile links. Remove a URL to hide its icon.
      "social": {
@@ -97,7 +94,15 @@ This website serves multiple roles:
      ]
      ```
 
-4. **Preview locally**
+4. **Customize home page sections**
+   - Edit JSON files in `assets/data/` to populate the home page:
+     - `about.json`
+     - `research.json`
+     - `publications.json`
+     - `projects.json`
+     - `technologies.json`
+
+5. **Preview locally**
    ```bash
    python3 -m http.server
    ```
