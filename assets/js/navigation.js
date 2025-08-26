@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(html => {
         navInclude.innerHTML = html;
         setupNavToggle();
+        document.dispatchEvent(new Event('navigationLoaded'));
       });
   }
   const footerInclude = document.getElementById('footer-include');
@@ -80,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Remove preloader after footer is injected (if present)
         const preloader = document.getElementById('preloader');
         if (preloader) preloader.remove();
+        document.dispatchEvent(new Event('footerLoaded'));
       });
   }
 

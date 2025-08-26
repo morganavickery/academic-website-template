@@ -1,0 +1,28 @@
+{
+  // Display name for the site owner
+  "name": "Jane Doe",
+  // Short tagline shown on the homepage hero section
+  "tagline": "Researcher, educator, and designer",
+  // Short blurb for the About section on the home page
+  "about": "I am an aspiring learning scientist and experience designer with dreams of designing enabling, critical, and multimodal learning environments that recognize and honor youths' bodies.",
+  // Social media profile links
+  "social": {
+    // Link to your Bluesky profile
+    "bluesky": "https://bsky.app/profile/example.bsky.social",
+    // Link to your Twitter profile
+    "twitter": "https://twitter.com/example",
+    // Link to your Google Scholar page
+    "google_scholar": "https://scholar.google.com/",
+    // Link to your GitHub profile
+    "github": "https://github.com/example",
+    // Link to your LinkedIn profile
+    "linkedin": "https://www.linkedin.com/in/example/"
+  },
+  // Contact email addresses
+  "contact": {
+    // For academic communications
+    "academic": "academic@example.edu",
+    // For industry communications
+    "industry": "industry@example.com"
+  }
+}
