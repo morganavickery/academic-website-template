@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(html => {
         navInclude.innerHTML = html;
         setupNavToggle();
+        if (window.siteConfigReady && window.applyConfig) {
+          window.siteConfigReady.then(() => window.applyConfig());
+        }
       });
   }
   const footerInclude = document.getElementById('footer-include');
@@ -80,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function() {
         // Remove preloader after footer is injected (if present)
         const preloader = document.getElementById('preloader');
         if (preloader) preloader.remove();
+        if (window.siteConfigReady && window.applyConfig) {
+          window.siteConfigReady.then(() => window.applyConfig());
+        }
       });
   }
 
