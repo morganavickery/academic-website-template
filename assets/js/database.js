@@ -154,12 +154,3 @@ function displayCards() {
   // Initialize database loading
   loadDatabase();
 });
-
-  function decodeEntities(encodedString) {
-    let textarea = document.createElement("textarea");
-    textarea.innerHTML = encodedString;
-    return textarea.value;
-  }
-
-  // Initialize
-  loadDatabase();
