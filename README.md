@@ -19,7 +19,7 @@ This website serves multiple roles:
 
 | Page | File | Description |
 |----|----|----|
-| Home | `index.html` | Landing page with sections on research, projects, technologies, and CV. Includes embedded analytics. |
+| Home | `index.html` | Landing page with sections on research, projects, technologies, and CV. Optional Google Analytics. |
 | Publications | `database.html` | Dynamic, card-based rendering of Morgan’s publication database from a CSV data source. |
 | Open-Access Resources | `resources.html` | A curated list of publicly available learning and teaching tools, documents, and templates. |
 | Navigation | `navigation.html` | Sidebar-based navigation with links to key sections and social media profiles. |
@@ -43,9 +43,11 @@ This website serves multiple roles:
    - Top-level fields include:
      - `name`: Display name for the site owner.
      - `tagline`: Short tagline shown on the homepage hero section.
+     - `typedItems`: Array of phrases for the homepage typing animation.
      - `about`: Blurb for the “About” section on the home page.
      - `social`: Links for social media icons (keys: `bluesky`, `twitter`, `google_scholar`, `github`, `linkedin`).
      - `contact`: Email addresses shown in the navigation footer (`academic`, `industry`).
+     - `analyticsId`: Google Analytics ID (e.g., `G-XXXXXXXXXX`). Remove this field to disable tracking.
    - Example:
    ```jsonc
    {
@@ -55,6 +57,7 @@ This website serves multiple roles:
      "tagline": "Data Scientist",
      // Short blurb for the About section on the home page
      "about": "I explore data-driven solutions to social problems.",
+     "typedItems": ["Scientist", "Teacher"],
      // Social media profile links. Remove a URL to hide its icon.
      "social": {
        "bluesky": "https://bsky.app/profile/example.bsky.social",
@@ -67,7 +70,8 @@ This website serves multiple roles:
      "contact": {
        "academic": "academic@example.edu",
        "industry": "industry@example.com"
-     }
+     },
+     "analyticsId": "G-XXXXXXXXXX"
    }
    ```
    - `site-config.json` supports `//` comments for readability. Tools that require strict JSON may fail to parse these comments; remove them or use a friendlier format like YAML and convert back to JSON before deployment.

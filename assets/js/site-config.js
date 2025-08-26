@@ -4,11 +4,23 @@ function stripComments(str) {
 
 let siteConfig = null;
 
+function injectAnalytics(id) {
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+  document.head.appendChild(script);
+
+  const inline = document.createElement('script');
+  inline.text = `\n    window.dataLayer = window.dataLayer || [];\n    function gtag(){dataLayer.push(arguments);}\n    gtag('js', new Date());\n    gtag('config', '${id}');\n  `;
+  document.head.appendChild(inline);
+}
+
 async function fetchSiteConfig() {
   try {
     const res = await fetch('site-config.json');
     const text = await res.text();
     siteConfig = JSON.parse(stripComments(text));
+    if (siteConfig.analyticsId) injectAnalytics(siteConfig.analyticsId);
     applySiteConfig();
   } catch (err) {
     console.error('Failed to load site-config.json', err);
@@ -35,6 +47,11 @@ function applySiteConfig() {
 
   const tagline = document.getElementById('site-tagline');
   if (tagline && siteConfig.tagline) tagline.textContent = siteConfig.tagline;
+
+  const typed = document.querySelector('.typed');
+  if (typed && Array.isArray(siteConfig.typedItems)) {
+    typed.setAttribute('data-typed-items', siteConfig.typedItems.join(', '));
+  }
 
   const aboutText = document.getElementById('about-text');
   if (aboutText && siteConfig.about) aboutText.textContent = siteConfig.about;
@@ -93,6 +110,10 @@ function applySiteConfig() {
 
   const footerName = document.querySelector('#footer .sitename');
   if (footerName && siteConfig.name) footerName.textContent = siteConfig.name;
+
+  if (typeof initializeTyped === 'function') {
+    initializeTyped(siteConfig.typedItems);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', fetchSiteConfig);
