@@ -88,4 +88,3 @@ Then visit `http://localhost:8000` in a browser.
 
 ## 8. Credits
 This template is adapted from the [iPortfolio theme](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) by BootstrapMade.
-
