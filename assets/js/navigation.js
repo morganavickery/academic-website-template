@@ -68,6 +68,11 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(response => response.text())
       .then(html => {
         navInclude.innerHTML = html;
+        if (typeof applyConfig === 'function') {
+          applyConfig();
+        } else if (typeof applySiteConfig === 'function') {
+          applySiteConfig();
+        }
         setupNavToggle();
         document.dispatchEvent(new Event('navigationLoaded'));
       });
@@ -78,6 +83,11 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(response => response.text())
       .then(html => {
         footerInclude.innerHTML = html;
+        if (typeof applyConfig === 'function') {
+          applyConfig();
+        } else if (typeof applySiteConfig === 'function') {
+          applySiteConfig();
+        }
         // Remove preloader after footer is injected (if present)
         const preloader = document.getElementById('preloader');
         if (preloader) preloader.remove();
