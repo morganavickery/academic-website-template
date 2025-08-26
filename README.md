@@ -76,7 +76,24 @@ This website serves multiple roles:
    - Swap images in `assets/img/` with your own files.
    - Replace `assets/uploads/database.csv` with your data while keeping the header row.
 
-3. **Preview locally**
+3. **Add resources**
+   - Edit `assets/data/resources.json` to manage entries shown on `resources.html`.
+   - Each item requires a `title`, `description`, and `link`. Optional fields like `meta`, `type`, or `embed` add extra details or custom layouts.
+   - Example:
+     ```json
+     [
+       {
+         "title": "Example Resource",
+         "description": "Short summary of the resource.",
+         "link": "https://example.com",
+         "meta": "Optional extra info",
+         "type": "whimsical",
+         "embed": "https://whimsical.com/embed/example"
+       }
+     ]
+     ```
+
+4. **Preview locally**
    ```bash
    python3 -m http.server
    ```
