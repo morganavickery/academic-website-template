@@ -41,19 +41,24 @@
   }
   window.addEventListener('load', aosInit);
 
-  // Initialize Typed.js for animated typing effect
-  const selectTyped = document.querySelector('.typed');
-  if (selectTyped) {
-    let typed_strings = selectTyped.getAttribute('data-typed-items');
-    typed_strings = typed_strings.split(',');
+  function initializeTyped(typedItems) {
+    const selectTyped = document.querySelector('.typed');
+    if (!selectTyped) return;
+    let strings = typedItems || selectTyped.getAttribute('data-typed-items');
+    if (!strings) return;
+    if (typeof strings === 'string') {
+      strings = strings.split(',').map(s => s.trim());
+    }
     new Typed('.typed', {
-      strings: typed_strings,
+      strings,
       loop: true,
       typeSpeed: 100,
       backSpeed: 50,
       backDelay: 2000
     });
   }
+
+  window.initializeTyped = initializeTyped;
 
   // Initialize PureCounter for animated counters
   new PureCounter();

@@ -3,6 +3,8 @@
   "name": "Jane Doe",
   // Short tagline shown on the homepage hero section
   "tagline": "Researcher, educator, and designer",
+  // Phrases for the homepage typing animation
+  "typedItems": ["Educator", "Researcher", "Designer", "Advocate"],
   // Short blurb for the About section on the home page
   "about": "I am an aspiring learning scientist and experience designer with dreams of designing enabling, critical, and multimodal learning environments that recognize and honor youths' bodies.",
   // Social media profile links control the icons in the navigation.
@@ -26,5 +28,7 @@
     "academic": "academic@example.edu",
     // Industry email line
     "industry": "industry@example.com"
-  }
+  },
+  // Google Analytics ID (e.g., G-XXXXXXXXXX). Remove this field to disable analytics.
+  "analyticsId": ""
 }
