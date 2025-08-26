@@ -1,0 +1,20 @@
+{
+  "featured": [
+    {
+      "icon": "bi-search-heart",
+      "title": "Sample Featured Project",
+      "description": "Description of a featured research project.",
+      "role": { "title": "Lead Researcher", "details": "Advised by Someone" }
+    }
+  ],
+  "other": [
+    {
+      "icon": "bi-flower3",
+      "title": "Sample Project",
+      "description": "Brief project summary.",
+      "role": { "title": "Graduate Research Assistant", "details": "2020 - Present" },
+      "principles": { "title": "Co-PIs", "details": "First Last & Second Last" },
+      "link": "https://example.com"
+    }
+  ]
+}
