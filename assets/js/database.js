@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Load and parse the CSV database, then display cards
   async function loadDatabase() {
-    const response = await fetch("assets/uploads/database.csv");
+    const response = await fetch("assets/data/database.csv");
     const text = await response.text();
 
     // Decode as UTF-8 to handle special characters
