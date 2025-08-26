@@ -4,7 +4,9 @@ A simple website for showcasing your academic work. Everything is plain HTML, CS
 
 ## 1. Create Your Own Copy
 
-*GitHub* is a website for storing and sharing files. A *repository* (or *repo*) is just a folder of files on GitHub.
+*GitHub* is a website for storing and sharing files. A *repository* (or *repo*) is just a folder of files for  software on GitHub.
+
+
 
 1. Make a free account at [github.com](https://github.com/).
 2. Click **Fork** to create your own copy of this repo. Forking means "make my own version on GitHub".
@@ -19,7 +21,7 @@ A simple website for showcasing your academic work. Everything is plain HTML, CS
 You mainly edit small text files that describe your content. Other files handle layout and style automatically.
 
 | Goal | Edit this file | Files that make it work (ignore these) | Where it shows up |
-| --- | --- | --- | --- |
+|----|----|----|----|
 | Site title, tagline, contact links | `site-config.json` | `assets/js/site-config.js` | every page |
 | Menu text and order | `navigation.html` | `assets/js/navigation.js`, `assets/css/navigation.css` | top navigation bar |
 | Footer text | `footer.html` | `assets/css/index.css` | bottom of every page |
@@ -35,29 +37,33 @@ All editable data files live in `assets/data`, and images live in `assets/img`.
 ### Data file cheat sheet
 
 | File | What it controls | Example snippet | Notes |
-| --- | --- | --- | --- |
+|----|----|----|----|
 | `site-config.json` | Name, tagline, social links | `{"name":"Your Name"}` | Leave a link blank to hide its icon. |
-| `about.json` | Short bio and list of roles | `{ "text": "One sentence.", "roles": [{"role": "PhD Student", "institution": "Example Univ."}] }` | |
-| `research.json` | Topics you study | `{ "topics": ["Topic one", "Topic two"] }` | |
+| `about.json` | Short bio and list of roles | `{ "text": "One sentence.", "roles": [{"role": "PhD Student", "institution": "Example Univ."}] }` |    |
+| `research.json` | Topics you study | `{ "topics": ["Topic one", "Topic two"] }` |    |
 | `publications.json` | A few highlighted citations on the home page | `{ "publications": [{"citation": "Author (2024)", "link": "https://..."}] }` | Use for a small set of featured works. |
 | `projects.json` | Research projects | `{ "featured": [{"title": "Big Project"}], "other": [{"title": "Small Project"}] }` | `featured` shows large cards; `other` shows a simple list. |
-| `technologies.json` | Tools or software you created | `{ "technologies": [{"title": "Tool", "role": "Developer"}] }` | |
+| `technologies.json` | Tools or software you created | `{ "technologies": [{"title": "Tool", "role": "Developer"}] }` |    |
 | `resources.json` | Resource links page | `[ {"title": "Template", "description": "What it is", "link": "https://..."} ]` | Each item needs `title`, `description`, `link`. |
 | `database.csv` | Full publications list | `date,"authors",title,venue,link`<br>`2024,"A. Author",Example Paper,Conf,https://...` | Keep the header exactly as shown. |
 
 ### Upload your own files
-- **CV** – replace `assets/data/cv.pdf` with your PDF.
-- **Profile picture** – replace `assets/img/profile headshot.png` (keep the name or update `index.html` and `navigation.html`).
-- **Hero image** – replace `assets/img/rene-bohmer-YeUVDKZWSZ4-unsplash.jpg` or change the file name in `index.html`.
-- **Full publications list** – upload your own `database.csv` with the same header.
+
+* **CV** – replace `assets/data/cv.pdf` with your PDF.
+* **Profile picture** – replace `assets/img/profile-headshot.png` (keep the name or update `index.html` and `navigation.html`).
+* **Hero image** – replace `assets/img/hero-image.jpg` or change the file name in `index.html`.
+* **Full publications list** – upload your own `database.csv` with the same header.
 
 ## 4. File Naming Tips
-- Keep data file names the same (`about.json`, `projects.json`, etc.).
-- For new images, use simple names like `my-photo.jpg` (lowercase letters, numbers, dashes). If you change a file name, update any HTML or JSON that refers to it.
-- The CSV must stay named `database.csv` and include the header row.
+
+* Keep data file names the same (`about.json`, `projects.json`, etc.).
+* For new images, use simple names like `my-photo.jpg` (lowercase letters, numbers, dashes). If you change a file name, update any HTML or JSON that refers to it.
+* The CSV must stay named `database.csv` and include the header row.
 
 ## 5. Remove Sections You Don’t Need
-- To hide a section on the home page, wrap its block in HTML comments in `index.html`:
+
+* To hide a section on the home page, wrap its block in HTML comments in `index.html`:
+
   ```html
   <!--
   <section id="technologies">
@@ -65,21 +71,27 @@ All editable data files live in `assets/data`, and images live in `assets/img`.
   </section>
   -->
   ```
-- Hide its link in `navigation.html` the same way:
+* Hide its link in `navigation.html` the same way:
+
   ```html
   <!-- <li><a href="#technologies">Technologies</a></li> -->
   ```
-- If a data file is empty, the section will simply appear blank.
-- Leaving a social or contact link empty in `site-config.json` hides it automatically.
+* If a data file is empty, the section will simply appear blank.
+* Leaving a social or contact link empty in `site-config.json` hides it automatically.
 
 ## 6. Preview the Site Locally
+
 Double‑click `index.html` to open it in a browser. If some sections look empty, your browser may require a simple local server:
+
 ```bash
 python3 -m http.server
 ```
+
 Then visit `http://localhost:8000` in a browser.
 
 ## 7. Make It Live on the Internet
+
+
 1. Commit and push your changes to GitHub.
 2. Go to **Settings → Pages** in your repo.
 3. Under **Build and deployment**, choose **Deploy from a branch**.
@@ -87,4 +99,5 @@ Then visit `http://localhost:8000` in a browser.
 5. Wait a minute for GitHub Pages to build your site. Refresh `https://YOURNAME.github.io/` (or `https://YOURNAME.github.io/REPO_NAME/` if you used a different repo name).
 
 ## 8. Credits
-This template is adapted from the [iPortfolio theme](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) by BootstrapMade.
+
+This template is adapted from the [iPortfolio theme](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) by BootstrapMade by Dr. Morgan Vickery ([morganavickery.com]()) for the purposes of junior academics creating their own free-to-run professional websites. Need support? Email Morgan at morganavickery@gmail.com -- shes happy to help :) 
