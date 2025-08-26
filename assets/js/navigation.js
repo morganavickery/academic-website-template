@@ -70,7 +70,12 @@ document.addEventListener("DOMContentLoaded", function() {
         navInclude.innerHTML = html;
         setupNavToggle();
         if (window.siteConfigReady && window.applyConfig) {
-          window.siteConfigReady.then(() => window.applyConfig());
+          window.siteConfigReady.then(() => {
+            window.applyConfig();
+            document.dispatchEvent(new Event('navigationLoaded'));
+          });
+        } else {
+          document.dispatchEvent(new Event('navigationLoaded'));
         }
       });
   }
@@ -84,7 +89,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const preloader = document.getElementById('preloader');
         if (preloader) preloader.remove();
         if (window.siteConfigReady && window.applyConfig) {
-          window.siteConfigReady.then(() => window.applyConfig());
+          window.siteConfigReady.then(() => {
+            window.applyConfig();
+            document.dispatchEvent(new Event('footerLoaded'));
+          });
+        } else {
+          document.dispatchEvent(new Event('footerLoaded'));
         }
       });
   }
