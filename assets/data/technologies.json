@@ -1,0 +1,6 @@
+{
+  "technologies": [
+    { "title": "Example Tool", "role": "Lead Designer & Developer", "link": "https://example.com" },
+    { "title": "Another Tool", "role": "Contributor", "link": "https://example.com" }
+  ]
+}

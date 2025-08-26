@@ -1,0 +1,12 @@
+{
+  "publications": [
+    {
+      "citation": "<strong>Doe, J.</strong> & Smith, A. (2024). Sample featured publication. <em>Journal of Examples</em>.",
+      "link": "https://example.com"
+    },
+    {
+      "citation": "<strong>Doe, J.</strong> (2023). Another sample paper. <em>Proceedings of Examples</em>.",
+      "link": "https://example.com"
+    }
+  ]
+}
