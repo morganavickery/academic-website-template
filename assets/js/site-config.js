@@ -49,15 +49,46 @@ function applySiteConfig() {
     };
     Object.entries(socialMap).forEach(([key, id]) => {
       const link = document.getElementById(id);
-      if (link && siteConfig.social[key]) link.href = siteConfig.social[key];
+      if (!link) return;
+      const url = siteConfig.social[key];
+      if (url) {
+        link.href = url;
+        link.style.display = '';
+      } else {
+        link.style.display = 'none';
+      }
+    });
+  } else {
+    ['social-bluesky', 'social-twitter', 'social-google-scholar', 'social-github', 'social-linkedin'].forEach(id => {
+      const link = document.getElementById(id);
+      if (link) link.style.display = 'none';
     });
   }
 
   if (siteConfig.contact) {
     const academic = document.getElementById('contact-academic');
-    if (academic && siteConfig.contact.academic) academic.textContent = siteConfig.contact.academic;
+    if (academic) {
+      if (siteConfig.contact.academic) {
+        academic.textContent = siteConfig.contact.academic;
+        academic.parentElement.style.display = '';
+      } else {
+        academic.parentElement.style.display = 'none';
+      }
+    }
     const industry = document.getElementById('contact-industry');
-    if (industry && siteConfig.contact.industry) industry.textContent = siteConfig.contact.industry;
+    if (industry) {
+      if (siteConfig.contact.industry) {
+        industry.textContent = siteConfig.contact.industry;
+        industry.parentElement.style.display = '';
+      } else {
+        industry.parentElement.style.display = 'none';
+      }
+    }
+  } else {
+    ['contact-academic', 'contact-industry'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.parentElement.style.display = 'none';
+    });
   }
 
   const footerName = document.querySelector('#footer .sitename');

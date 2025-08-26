@@ -5,24 +5,26 @@
   "tagline": "Researcher, educator, and designer",
   // Short blurb for the About section on the home page
   "about": "I am an aspiring learning scientist and experience designer with dreams of designing enabling, critical, and multimodal learning environments that recognize and honor youths' bodies.",
-  // Social media profile links
+  // Social media profile links control the icons in the navigation.
+  // Remove a URL or leave it blank to hide its icon.
   "social": {
-    // Link to your Bluesky profile
+    // Bluesky icon
     "bluesky": "https://bsky.app/profile/example.bsky.social",
-    // Link to your Twitter profile
+    // Twitter icon
     "twitter": "https://twitter.com/example",
-    // Link to your Google Scholar page
+    // Google Scholar icon
     "google_scholar": "https://scholar.google.com/",
-    // Link to your GitHub profile
+    // GitHub icon
     "github": "https://github.com/example",
-    // Link to your LinkedIn profile
+    // LinkedIn icon
     "linkedin": "https://www.linkedin.com/in/example/"
   },
-  // Contact email addresses
+  // Contact email addresses displayed in the navigation footer.
+  // Remove an address or leave it blank to hide that line.
   "contact": {
-    // For academic communications
+    // Academic email line
     "academic": "academic@example.edu",
-    // For industry communications
+    // Industry email line
     "industry": "industry@example.com"
   }
 }
