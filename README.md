@@ -2,21 +2,19 @@
 
 A simple website for showcasing your academic work. Everything is plain HTML, CSS, and JavaScript so you can host it anywhere (such as GitHub Pages).
 
-## 1. Make Your Own Copy
+## 1. Get Your Own Copy
 
-1. **Fork** this repository (click the **Fork** button on GitHub). Forking means "make my own copy on GitHub." You can edit your fork without affecting the original.
-2. **Clone** your fork: downloading a copy to your computer. On your fork's page, click the **Code** button and copy the URL. Then run:
-   ```bash
-   git clone YOUR_URL_HERE
-   ```
-   If you prefer not to use Git, you can press **Download ZIP** on GitHub and unzip the folder.
+1. **Fork** this repository on GitHub. Forking means "make my own copy on GitHub." You can edit your fork without affecting the original.
+2. To host the site at `https://YOURNAME.github.io`, go to your fork’s **Settings → General** page and rename the repository to `YOURNAME.github.io`.
+3. You can edit files directly on GitHub: open a file and click the ✏️ icon, or press **Download ZIP** to work on the files on your computer without using the command line.
 
-## 2. Replace Text and Images
+## 2. Replace Text, Data, and Images
 
-Open the files in any text editor (VS Code, Notepad, etc.). The site works by reading small data files, so you only change the text there.
+All editable files live in the `assets/data` and `assets/img` folders.
+You can upload replacements through GitHub’s **Upload files** button or by dragging files into the folder in the web interface.
 
 ### `site-config.json`
-This file controls the name, tagline, and contact links used across the site.
+Controls the name, tagline, and contact links used across the site.
 ```json
 {
   "name": "Your Name",
@@ -51,7 +49,7 @@ Each section on the home page reads from a small JSON file:
   ```json
   {"topics": ["Topic one", "Topic two"]}
   ```
-- **`publications.json`** – a few highlighted citations.
+- **`publications.json`** – a few highlighted citations that appear on the home page.
   ```json
   {"publications": [{"citation": "Author (Year). Title.", "link": "https://example.com"}]}
   ```
@@ -63,7 +61,7 @@ Each section on the home page reads from a small JSON file:
     "other": [{"icon": "bi-flower3", "title": "Small Project"}]
   }
   ```
-  *`icon` uses [Bootstrap Icons](https://icons.getbootstrap.com/). Only the name after `bi-` is needed.*
+  *`featured` projects show up as large cards with descriptions; `other` projects appear as a simple list.*
 - **`technologies.json`** – tools you created or maintain.
   ```json
   {"technologies": [{"title": "Tool Name", "role": "Developer", "link": "https://example.com"}]}
@@ -80,10 +78,13 @@ Each section on the home page reads from a small JSON file:
   ```
   Each row after that holds one publication.
 
-### Images
-Place your images in `assets/img/`.
-- Replace `profile headshot.png` with your own picture (keep the same file name or update `index.html` and `navigation.html`).
-- Replace `rene-bohmer-YeUVDKZWSZ4-unsplash.jpg` with any background photo, or change the name in `index.html`.
+`publications.json` is for a handful of featured works on the home page, while `database.csv` lists every publication on a separate page.
+
+### Uploading your own files
+- **CV** – replace `assets/data/cv.pdf` with your PDF.
+- **Full publications list** – upload your own `database.csv` with the same header.
+- **Profile picture** – replace `assets/img/profile headshot.png` (keep the same name or update `index.html` and `navigation.html`).
+- **Hero image** – replace `assets/img/rene-bohmer-YeUVDKZWSZ4-unsplash.jpg` or change the file name in `index.html`.
 
 ## 3. File Naming Tips
 - Keep data file names the same. The scripts expect `about.json`, `projects.json`, etc.
@@ -97,15 +98,19 @@ Place your images in `assets/img/`.
 - Leaving a social or contact link empty in `site-config.json` hides it automatically.
 
 ## 5. Preview the Site Locally
-From the project folder run:
+Double‑click `index.html` to open it in a browser. If some sections look empty, your browser may require a simple local server:
 ```bash
 python3 -m http.server
 ```
 Then visit `http://localhost:8000` in a browser.
 
-## 6. Publish
-Commit your changes and push them to your fork. On GitHub, go to **Settings → Pages** and choose the root folder to host the site with GitHub Pages.
+## 6. Make It Live on the Internet
+1. Commit and push your changes to GitHub.
+2. If you renamed the repository to `YOURNAME.github.io`, your site will live at `https://YOURNAME.github.io/`.
+3. On GitHub, go to **Settings → Pages**.
+4. Under **Build and deployment**, choose **Deploy from a branch**.
+5. Select the `main` branch and the `/ (root)` folder, then **Save**.
+6. Wait a minute for GitHub Pages to build your site. Refresh `https://YOURNAME.github.io/` (or `https://YOURNAME.github.io/REPO_NAME/` if you kept a different repo name).
 
 ## 7. Credits
 This template is adapted from the [iPortfolio theme](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) by BootstrapMade.
-
