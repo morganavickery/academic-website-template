@@ -40,21 +40,37 @@ This website serves multiple roles:
 1. **Update `site-config.json`**
    - Located at the project root.
    - Replace placeholder values with your own site details.
-   - **Before**
-   ```json
+   - Top-level fields include:
+     - `name`: Display name for the site owner.
+     - `tagline`: Short tagline shown on the homepage hero section.
+     - `about`: Blurb for the “About” section on the home page.
+     - `social`: Links for social media icons (keys: `bluesky`, `twitter`, `google_scholar`, `github`, `linkedin`).
+     - `contact`: Email addresses shown in the navigation footer (`academic`, `industry`).
+   - Example:
+   ```jsonc
    {
-     "siteTitle": "Morgan A Vickery",
-     "tagline": "Learning Scientist"
+     // Display name for the site owner
+     "name": "Jane Doe",
+     // Short tagline shown on the homepage hero section
+     "tagline": "Data Scientist",
+     // Short blurb for the About section on the home page
+     "about": "I explore data-driven solutions to social problems.",
+     // Social media profile links. Remove a URL to hide its icon.
+     "social": {
+       "bluesky": "https://bsky.app/profile/example.bsky.social",
+       "twitter": "https://twitter.com/example",
+       "google_scholar": "https://scholar.google.com/",
+       "github": "https://github.com/example",
+       "linkedin": "https://www.linkedin.com/in/example/"
+     },
+     // Contact email addresses displayed in the navigation footer
+     "contact": {
+       "academic": "academic@example.edu",
+       "industry": "industry@example.com"
+     }
    }
    ```
-   **After**
-   ```json
-   {
-     "siteTitle": "Jane Doe",
-     "tagline": "Data Scientist"
-   }
-   ```
-   - Ensure the JSON syntax stays valid (use double quotes and commas).
+   - `site-config.json` supports `//` comments for readability. Tools that require strict JSON may fail to parse these comments; remove them or use a friendlier format like YAML and convert back to JSON before deployment.
 
 2. **Replace images and data**
    - Swap images in `assets/img/` with your own files.
@@ -68,7 +84,7 @@ This website serves multiple roles:
 
 ### Common mistakes
 
-- Missing quotes or trailing commas in `site-config.json`.
+- Missing quotes or trailing commas in `site-config.json` (especially after removing comments).
 - Renaming images without updating their paths in the HTML/CSS.
 - Removing the header row from `database.csv`.
 
