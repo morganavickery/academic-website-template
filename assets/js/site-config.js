@@ -24,6 +24,9 @@ async function fetchSiteConfig() {
     applySiteConfig();
   } catch (err) {
     console.error('Failed to load site-config.json', err);
+    if (typeof initializeTyped === 'function') {
+      initializeTyped();
+    }
   }
 }
 
