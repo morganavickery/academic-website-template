@@ -1,12 +1,8 @@
 # Academic Portfolio Website Template
 
-A simple website for showcasing your academic work. Everything is plain HTML, CSS, and JavaScript so you can host it anywhere (such as GitHub Pages).
-
-## 1. Create Your Own Copy
+## 1. Create Your Own Copy of the Template!
 
 *GitHub* is a website for storing and sharing files. A *repository* (or *repo*) is just a folder of files for  software on GitHub.
-
-
 
 1. Make a free account at [github.com](https://github.com/).
 2. Click **Fork** to create your own copy of this repo. Forking means "make my own version on GitHub".
@@ -80,24 +76,28 @@ All editable data files live in `assets/data`, and images live in `assets/img`.
 * Leaving a social or contact link empty in `site-config.json` hides it automatically.
 
 ## 6. Preview the Site Locally
-
 Double‑click `index.html` to open it in a browser. If some sections look empty, your browser may require a simple local server:
-
 ```bash
 python3 -m http.server
 ```
-
 Then visit `http://localhost:8000` in a browser.
 
 ## 7. Make It Live on the Internet
-
-
 1. Commit and push your changes to GitHub.
 2. Go to **Settings → Pages** in your repo.
 3. Under **Build and deployment**, choose **Deploy from a branch**.
 4. Select the `main` branch and the `/ (root)` folder, then **Save**.
 5. Wait a minute for GitHub Pages to build your site. Refresh `https://YOURNAME.github.io/` (or `https://YOURNAME.github.io/REPO_NAME/` if you used a different repo name).
 
+## 8. Use Your Own Domain (Optional)
+If you already own a domain name (like `example.com`), you can point it to your GitHub Pages site.
+
+1. Open the file named `CNAME` in this repo (or create one) and replace its contents with your domain name, e.g. `example.com`.
+2. In the repo’s **Settings → Pages → Custom domain** box, type the same domain name and click **Save**.
+3. At your domain provider’s website, find the DNS settings and create a **CNAME** record that points your domain (or `www` subdomain) to `YOURNAME.github.io`.
+4. DNS changes can take a while—after it updates, your site will appear at your domain.
+
+If you decide not to use a custom domain, delete the `CNAME` file so GitHub Pages uses the default `YOURNAME.github.io` address.
 ## 8. Credits
 
 This template is adapted from the [iPortfolio theme](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) by BootstrapMade by Dr. Morgan Vickery ([morganavickery.com]()) for the purposes of junior academics creating their own free-to-run professional websites. Need support? Email Morgan at morganavickery@gmail.com -- shes happy to help :) 
