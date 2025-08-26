@@ -1,0 +1,844 @@
+/**
+* Template Name: iPortfolio
+* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-technologies-websites-template/
+* Updated: Jun 29 2024 with Bootstrap v5.3.3
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# Font & Color Variables
+# Help: https://bootstrapmade.com/color-system/
+--------------------------------------------------------------*/
+/* Fonts */
+:root {
+  --default-font: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Lato", sans-serif;
+
+  --background-color: #ffffff;
+  --default-color: black;
+  --heading-color: black;
+  --accent-color: #006466;
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+
+  --nav-color: #a8a9b4;
+  --nav-hover-color: #ffffff;
+  --nav-mobile-background-color: #040b14;
+
+  --bright-teal: #006466;
+  --mid-teal: #065A60;
+  --mid2-teal: #0B525B;
+  --dark-teal: #144552;
+  --deep-blue: #1B3A4B;
+  --deep-navy: #212F45;
+  --deep-indigo: #272640;
+  --deep-indigo-trans1: #27264067;
+  --deep-indigo-trans2: #2726402c;
+  --white: #FFFFFF;
+  --black: #000000;
+  --dark-purp: #312244;
+  --mid-purp: #3E1F47;
+  --bright-purp: #4D194D;
+
+  scroll-behavior: smooth;
+}
+
+/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
+.light-background {
+  --background-color: #2726402c;
+  --surface-color: #ffffff;
+}
+
+.dark-background {
+  --background-color: #151427;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #151f2b;
+  --contrast-color: #ffffff;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+  
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  /* Semi Bold */
+}
+
+
+p,
+a,
+li,
+span {
+  font-family: var(--default-font);
+  font-weight: 400;
+  /* Regular */
+}
+
+
+
+/*--------------------------------------------------------------
+# Global Footer
+--------------------------------------------------------------*/
+
+.footer {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-size: 14px;
+  padding: 40px 0;
+  position: relative;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.footer .copyright p {
+  margin-bottom: 0;
+}
+
+.footer .credits {
+  margin-top: 4px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  background: var(--background-color);
+  transition: all 0.6s ease-out;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #ffffff;
+  border-color: var(--accent-color) transparent var(--accent-color) transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1.5s linear infinite;
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--accent-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+  color: var(--contrast-color);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 750px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Page Titles & Breadcrumbs
+--------------------------------------------------------------*/
+.page-title {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 25px 0;
+  position: relative;
+}
+
+.page-title h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.page-title .breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.page-title .breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.page-title .breadcrumbs ol li+li::before {
+  content: "/";
+  display: inline-block;
+  padding-right: 10px;
+  color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 40px 20px; /* Adjusted for better responsiveness */
+  overflow: clip;
+}
+
+.section .content-container {
+  max-width: 1200px; /* Restrict content width for larger screens */
+  margin: 0 auto; /* Center content */
+  padding: 0 20px; /* Add padding for smaller screens */
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  padding-bottom: 20px;
+  position: relative;
+  text-align: center; /* Center-align titles for consistency */
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.section-title h2:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--dark-teal);
+  left: 50%; /* Center the underline */
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.section-title p {
+  margin-bottom: 0;
+  font-size: 16px; /* Adjust font size for better readability */
+  color: var(--nav-color);
+}
+
+/*--------------------------------------------------------------
+# Responsive Adjustments for Sections
+--------------------------------------------------------------*/
+@media (max-width: 750px) {
+  .section {
+    padding: 30px 15px; /* Reduce padding for smaller screens */
+  }
+
+  .section-title h2 {
+    font-size: 24px; /* Adjust title size for smaller screens */
+  }
+
+  .section-title p {
+    font-size: 14px; /* Adjust subtitle size for smaller screens */
+  }
+
+  .section .content-container {
+    padding: 0 10px; /* Reduce padding for smaller screens */
+  }
+}
+
+.content-container p {
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  width: 100%;
+  min-height: 50vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero .background-container img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  /* Place image behind everything */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(39, 38, 64, 0.9), rgba(20, 69, 82, 0.9));
+  /* Gradient overlay */
+  z-index: 2;
+  /* Overlay above the image */
+}
+
+.hero .container {
+  position: relative;
+  z-index: 3;
+  /* Ensure content is on top of the overlay */
+  color: #ffffff;
+  /* Optional: Ensure text is readable */
+  display: flex;
+  flex-wrap: wrap;
+  /* Allow items to wrap on smaller screens */
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  /* Add spacing between elements */
+  text-align: center;
+  left: 50px;
+}
+
+.hero .headshot-container {
+  flex: 0 0 auto;
+  /* Ensure the headshot does not grow or shrink */
+  max-width: 250px;
+  /* Limit the width of the headshot */
+  text-align: center;
+}
+
+.hero .headshot-container img {
+  width: 100%;
+  /* Ensure the image scales within its container */
+  height: auto;
+  border: 8px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  object-fit: cover;
+  border-radius: 50%;
+  /* Make it circular if needed */
+}
+
+.hero .text-container {
+  flex: 1;
+  /* Allow the text to take up the remaining space */
+  text-align: left;
+}
+
+.hero h2 {
+  margin: 0;
+  font-size: 48px;
+  /* Adjust font size */
+  font-weight: 700;
+}
+
+.hero p {
+  margin: 10px 0 0 0;
+  font-size: 20px;
+  /* Adjust font size */
+}
+
+.hero p span {
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.emphasize {
+  color: var(--contrast-color);
+  font-family: inherit;
+  font-weight: lighter;
+}
+@media (max-width: 1200px) {
+  .hero {
+    flex-direction: column;
+    /* Stack items vertically */
+    text-align: center;
+  }
+
+  .hero .headshot-container {
+    max-width: 150px;
+    /* Adjust headshot size on smaller screens */
+    margin-bottom: 15px;
+  }
+    .hero .container {
+      left: 0px;
+    }
+
+  .hero h2 {
+    font-size: 28px;
+    /* Adjust for smaller screens */
+  }
+
+  .hero p {
+    font-size: 18px;
+    /* Adjust for smaller screens */
+  }
+}
+
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+
+.about .content h2 {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.about-container {
+  padding-bottom: 10px;
+}
+
+.about-list {
+  padding-left: 40px;
+  font-size: smaller;
+}
+
+.about .content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about .content ul li {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.about .content ul strong {
+  margin-right: 10px;
+}
+
+.about .content ul i {
+  font-size: 16px;
+  margin-right: 5px;
+  color: var(--accent-color);
+  line-height: 0;
+}
+
+/*--------------------------------------------------------------
+# Tools Section
+--------------------------------------------------------------*/
+
+.mini-tile {
+  background-color: var(--deep-indigo-trans1);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* font-weight: lighter; */
+  text-align: center;
+  height: 80px;
+  padding: 10px;
+  align-content: center;
+  justify-content: space-between;
+  /* Centers the content vertically */
+}
+
+
+
+/*--------------------------------------------------------------
+# SOCIAL BUTTONS 
+--------------------------------------------------------------*/
+.social-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #1da1f2;
+  /* Replace with your desired background color */
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-button:hover {
+  background-color: #0d8bd8;
+  /* Slightly darker shade for hover effect */
+  transform: scale(1.1);
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.contact-container {
+  padding-top: 40px;
+  font-size: smaller;
+text-align: center;
+}
+.contact-container em {
+  color: var(--nav-color)
+}
+
+
+/*--------------------------------------------------------------
+# PROJECTS Section
+--------------------------------------------------------------*/
+
+.projects .container-tiles-featured {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  padding-bottom: 10px;
+}
+
+.projects .container-tiles-other {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.project-tile {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-content: start;
+}
+
+.project-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.project-tile .icon {
+  color: #17a2b8;
+  font-size: 2rem;
+  margin-right: 15px;
+}
+
+.project-tile .title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.project-tile .description {
+  font-size: .7rem;
+  line-height: 1.15;
+  text-align: left;
+  font-weight: 150px;
+  color: #555;
+  padding-bottom: 10px;
+}
+
+.project-tile .role,
+.project-tile .principles {
+  font-size: 0.8rem;
+  font-weight: 200px;
+  color: #333;
+  text-align: right;
+  margin: 0;
+  /* Remove any default margin */
+  padding: 0;
+  /* Remove any default padding */
+}
+
+.project-tile .tile-header {
+  display: flex;
+  justify-content: space-between;
+  /* Ensures the icon and link are on opposite ends */
+  align-items: center;
+  /* Vertically aligns the icon and button */
+  margin-bottom: 10px;
+  /* Adds some spacing below the header */
+}
+
+.project-tile .tile-header .icon {
+  color: #17a2b8;
+  font-size: 2rem;
+  flex-shrink: 0;
+  /* Ensures the icon doesn't resize */
+}
+
+.project-tile .tile-header .tile-link-container {
+  flex-shrink: 0;
+  /* Prevents the container from resizing */
+}
+
+.project-tile .tile-header .tile-link-container a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #17a2b8;
+  text-decoration: none;
+  border: 1px solid #17a2b8;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-tile .tile-header .tile-link-container a:hover {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Technologies Section
+--------------------------------------------------------------*/
+
+.technologies .container-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.technologies .technologies-content {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 300px;
+  background-color: var(--surface-color);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effects for tiles */
+.technologies .technologies-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.technologies .tile-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.technologies .tile-header p {
+  margin: 5px 0 10px;
+  font-size: 0.6rem;
+  text-align: center;
+  color: #6c757d;
+}
+
+.technologies .tile-footer {
+  text-align: center;
+  width: 100%;
+}
+
+.technologies .tile-footer .tile-link {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.technologies .tile-footer .tile-link:hover {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 750px) {
+  .technologies .isotope-container {
+    grid-template-columns: 1fr;
+    /* One tile per row on smaller screens */
+  }
+
+  .technologies .technologies-content {
+    height: auto;
+    padding: 15px;
+  }
+}
+
+.custom-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tile-header h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.tile-header p {
+  margin: 5px 0 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #6c757d;
+}
+
+.tile-body {
+  margin: 10px 0;
+}
+
+.tile-icon {
+  color: #17a2b8;
+}
+
+.tile-footer .tile-link {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #17a2b8;
+  border: 1px solid #17a2b8;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tile-footer .tile-link:hover {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Featured Publications Section
+--------------------------------------------------------------*/
+
+.pubs-list .tile-link {
+  display: inline-flex; /* Ensures the text and icon are inline and aligned properly */
+  align-items: center; /* Vertically centers the icon and text */
+  gap: 4px; /* Adds spacing between text and icon */
+  text-decoration: none;
+  font-size: 0.5rem;
+  font-weight: 500;
+  color: #17a2b8;
+  border: 1px solid #17a2b8;
+  padding: 4px 8px; /* Ensures enough space inside the button */
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-left: 5px; /* Adds spacing between the paragraph text and the button */
+  white-space: nowrap; /* Prevents wrapping for the text and icon */
+}
+
+.pubs-list .tile-link:hover {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.pubs-list .tile-link i {
+  font-size: 0.6rem; /* Adjust icon size */
+}
+.pubs-list p {
+  margin: 0; /* Reset default margin */
+  padding-left: 20px; /* Creates space for the hanging indent */
+  text-indent: -20px; /* Negative value aligns the first line to the left */
+  font-size: smaller; /* Optional: Adjust font size */
+  line-height: 1.5; /* Optional: Adjust line spacing */
+  position: relative;
+}
+
+.pubs-list p a {
+  display: inline-block; /* Ensures the link stays inline */
+  margin-left: 10px; /* Adds space between text and the link */
+  text-indent: 0; /* Prevents hanging indent from affecting the link */
+  vertical-align: middle; /* Aligns the link with the text */
+}
+
+/* Layout shift support when nav is open */
+@media (min-width: 800px) {
+  .navigation.navigation-show ~ main,
+  .navigation.navigation-show ~ #footer {
+    margin-left: 300px;
+    transition: margin-left 0.3s;
+  }
+
+  .navigation ~ main,
+  .navigation ~ #footer {
+    margin-left: 0;
+    transition: margin-left 0.3s;
+  }
+}
+
+/* Smooth transition always */
+.main,
+#footer {
+  transition: margin-left 0.3s;
+}

@@ -1,0 +1,203 @@
+/*-------------------------------------------------------------------
+  # GENERAL STYLES
+-------------------------------------------------------------------*/
+
+:root {
+  --default-color: black;
+  --heading-color: black;
+  --accent-color: #006466;
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+
+  --nav-color: #a8a9b4;
+  --nav-hover-color: #ffffff;
+  --nav-mobile-background-color: #040b14;
+
+  --offwhite: #FBF8C5;
+  --grey: #33392D;
+  --offblack: #071013;
+  --timberwolf: #D3D0CB;
+
+  --bright-teal: #EF8A17;
+  --charcoal: #001427;
+
+  --bright-teal: #006466;
+  --mid-teal: #065A60;
+  --mid2-teal: #0B525B;
+  --dark-teal: #144552;
+  --deep-blue: #1B3A4B;
+  --deep-navy: #212F45;
+  --deep-indigo: #272640;
+  --deep-indigo-trans1: #27264067;
+  --deep-indigo-trans2: #2726402c;
+  --white: #FFFFFF;
+  --black: #000000;
+  --dark-purp: #312244;
+  --mid-purp: #3E1F47;
+  --bright-purp: #4D194D;
+
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+}
+
+/*-------------------------------------------------------------------
+HERO SECTION
+-------------------------------------------------------------------*/
+
+.database-hero {
+  width: 100%;
+  min-height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background-color: var(--deep-navy);
+}
+
+.database-hero .container {
+  position: relative;
+  z-index: 3;
+  color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.database-hero h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--offwhite);
+  margin-top: 10px;
+}
+
+/*-------------------------------------------------------------------
+  # DATABASE CONTAINER
+-------------------------------------------------------------------*/
+
+.resource-container {
+  background: var(--background-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/*-------------------------------------------------------------------
+  # RESOURCE TILES
+-------------------------------------------------------------------*/
+
+.resource-tile {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid var(--deep-indigo-trans1);
+  padding: 18px 20px 16px 20px;
+  margin: 8px 0;
+  width: 100%;
+  max-width: 420px;
+  min-width: 260px;
+  text-decoration: none;
+  color: var(--default-color);
+  transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.resource-tile:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  border-color: var(--accent-color);
+  transform: translateY(-4px) scale(1.02);
+  background: var(--deep-indigo-trans2);
+  color: var(--accent-color);
+}
+
+.resource-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--accent-color);
+}
+
+.resource-meta {
+  font-size: 0.85rem;
+  color: var(--nav-color);
+  margin-bottom: 8px;
+}
+
+.resource-desc {
+  font-size: 0.97rem;
+  color: var(--default-color);
+  line-height: 1.4;
+}
+
+/* Responsive: stack tiles vertically on small screens */
+@media (max-width: 700px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .resource-tile {
+    max-width: 98vw;
+    min-width: 0;
+  }
+}
+
+.resource-tile--whimsical {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 700px) {
+  .resource-tile--whimsical {
+    max-width: 860px;
+  }
+
+  .resource-tile--whimsical .resource-whimsical-content {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .resource-tile--whimsical .resource-text {
+    flex-basis: 40%;
+    flex-grow: 1;
+  }
+
+  .resource-tile--whimsical .whimsical-iframe {
+    flex-basis: 60%;
+    flex-grow: 1;
+    height: 300px;
+  }
+}
+
+@media (max-width: 699px) {
+  .resource-tile--whimsical .resource-whimsical-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resource-tile--whimsical .whimsical-iframe {
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+  }
+}
