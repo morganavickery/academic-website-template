@@ -35,6 +35,44 @@ This website serves multiple roles:
 * [Google Fonts](https://fonts.google.com/)
 * **Custom CSS/JS**: `assets/css/*.css`, `assets/js/*.js`
 
+## 🛠️ Setup
+
+1. **Update `site-config.json`**
+   - Located at the project root.
+   - Replace placeholder values with your own site details.
+   - **Before**
+   ```json
+   {
+     "siteTitle": "Morgan A Vickery",
+     "tagline": "Learning Scientist"
+   }
+   ```
+   **After**
+   ```json
+   {
+     "siteTitle": "Jane Doe",
+     "tagline": "Data Scientist"
+   }
+   ```
+   - Ensure the JSON syntax stays valid (use double quotes and commas).
+
+2. **Replace images and data**
+   - Swap images in `assets/img/` with your own files.
+   - Replace `assets/uploads/database.csv` with your data while keeping the header row.
+
+3. **Preview locally**
+   ```bash
+   python3 -m http.server
+   ```
+   Visit `http://localhost:8000` to view the site.
+
+### Common mistakes
+
+- Missing quotes or trailing commas in `site-config.json`.
+- Renaming images without updating their paths in the HTML/CSS.
+- Removing the header row from `database.csv`.
+
+
 ## 🎨 Theme Attribution
 
 
