@@ -4,6 +4,10 @@
 
 *GitHub* is a website for storing and sharing files. A *repository* (or *repo*) is just a folder of files for  software on GitHub.
 
+
+
+
+
 1. Make a free account at [github.com](https://github.com/).
 2. Click **Fork** to create your own copy of this repo. Forking means "make my own version on GitHub".
 3. To host your site at `https://YOURNAME.github.io`, go to your fork’s **Settings → General** page and rename the repo to `YOURNAME.github.io`.
@@ -26,7 +30,7 @@ You mainly edit small text files that describe your content. Other files handle 
 | Full publications list | `assets/data/database.csv` | `database.html`, `assets/js/database.js`, `assets/css/database.css` | publications page |
 | Photos (profile, hero) | images in `assets/img` | `index.html`, `navigation.html` | home page & menu |
 
-## 3. Replace Text, Data, and Images
+## 3. Customizing the Content & Style
 
 All editable data files live in `assets/data`, and images live in `assets/img`.
 
@@ -49,6 +53,47 @@ All editable data files live in `assets/data`, and images live in `assets/img`.
 * **Profile picture** – replace `assets/img/profile-headshot.png` (keep the name or update `index.html` and `navigation.html`).
 * **Hero image** – replace `assets/img/hero-image.jpg` or change the file name in `index.html`.
 * **Full publications list** – upload your own `database.csv` with the same header.
+
+## Choosing your Color Scheme
+
+Inside, you’ll see a section like this (your values may differ):
+
+```json
+"theme": {
+  "colors": {
+    "background": "#ffffff",
+    "default": "#111111",
+    "heading": "#111111",
+    "accent": "#006466",
+    "surface": "#ffffff",
+    "contrast": "#ffffff",
+
+    "nav": "#a8a9b4",
+    "navHover": "#ffffff",
+    "navMobileBg": "#040b14"
+  }
+}
+```
+
+
+You’ll change the **hex codes** (the parts like `#006466`) to your own colors.
+
+> Tip: If you don’t know hex codes, Google has a built-in “[color picker](https://share.google/CyUft0iL1uNoLPEXY)” for the browser, pick a color, and copy the hex (looks like `#12ABCD`).
+
+
+***What each color controls***
+
+| Variable | What it controls | Recommended default / guidance |
+|----|----|----|
+| `background` | Page background behind everything | Light color for readability, usually white `#ffffff` |
+| `default` | Normal body text color | Dark gray/black (`#111111`–`#222222`) for good readability |
+| `heading` | Headings (titles) color | Same as `default` or slightly darker; keep highly readable |
+| `accent` | “Brand” color for highlights (buttons, links, special elements) | Bright, standout color (e.g., blue/teal/purple) |
+| `surface` | Card/panel backgrounds that sit on top of the page | Usually white `#ffffff` on light themes (dark gray for dark mode) |
+| `contrast` | Text/icons that appear on top of the accent color (e.g., button text) | Usually white `#ffffff` if the accent is dark/saturated |
+| `nav` | Default color of navigation (menu) text | Softer gray (e.g., `#a8a9b4`) so hover/active states stand out |
+| `navHover` | Color of a menu item on hover/active | White `#ffffff` or very light color for strong contrast |
+| `navMobileBg` | Background color for the mobile menu | Dark, solid color (e.g., `#040b14`) for easy-to-read menu text |
 
 ## 4. File Naming Tips
 
@@ -76,13 +121,21 @@ All editable data files live in `assets/data`, and images live in `assets/img`.
 * Leaving a social or contact link empty in `site-config.json` hides it automatically.
 
 ## 6. Preview the Site Locally
+
 Double‑click `index.html` to open it in a browser. If some sections look empty, your browser may require a simple local server:
+
 ```bash
 python3 -m http.server
 ```
+
 Then visit `http://localhost:8000` in a browser.
 
 ## 7. Make It Live on the Internet
+
+
+
+
+
 1. Commit and push your changes to GitHub.
 2. Go to **Settings → Pages** in your repo.
 3. Under **Build and deployment**, choose **Deploy from a branch**.
@@ -90,7 +143,12 @@ Then visit `http://localhost:8000` in a browser.
 5. Wait a minute for GitHub Pages to build your site. Refresh `https://YOURNAME.github.io/` (or `https://YOURNAME.github.io/REPO_NAME/` if you used a different repo name).
 
 ## 8. Use Your Own Domain (Optional)
+
 If you already own a domain name (like `example.com`), you can point it to your GitHub Pages site.
+
+
+
+
 
 1. Open the file named `CNAME` in this repo (or create one) and replace its contents with your domain name, e.g. `example.com`.
 2. In the repo’s **Settings → Pages → Custom domain** box, type the same domain name and click **Save**.
@@ -98,6 +156,7 @@ If you already own a domain name (like `example.com`), you can point it to your 
 4. DNS changes can take a while—after it updates, your site will appear at your domain.
 
 If you decide not to use a custom domain, delete the `CNAME` file so GitHub Pages uses the default `YOURNAME.github.io` address.
+
 ## 8. Credits
 
-This template is adapted from the [iPortfolio theme](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) by BootstrapMade by Dr. Morgan Vickery ([morganavickery.com]()) for the purposes of junior academics creating their own free-to-run professional websites. Need support? Email Morgan at morganavickery@gmail.com -- shes happy to help :) 
+This template is adapted from the [iPortfolio theme](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/) by BootstrapMade by Dr. Morgan Vickery ([morganavickery.com]()) for the purposes of junior academics creating their own free-to-run professional websites. Need support? Email Morgan at morganavickery@gmail.com -- shes happy to help :)

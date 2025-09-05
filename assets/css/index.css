@@ -1,64 +1,73 @@
-/**
-* Template Name: iPortfolio
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-technologies-websites-template/
-* Updated: Jun 29 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
-/* Fonts */
 :root {
+  /* =========================
+     Fonts
+     ========================= */
   --default-font: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Raleway", sans-serif;
   --nav-font: "Lato", sans-serif;
 
-  --background-color: #ffffff;
-  --default-color: black;
-  --heading-color: black;
-  --accent-color: #006466;
-  --surface-color: #ffffff;
-  --contrast-color: #ffffff;
+  /* =========================
+     Semantic color tokens (preferred)
+     ========================= */
+  /* Core surfaces & text */
+  --color-bg: #ffffff;            /* Page background (body/sections) */
+  --color-surface: #ffffff;       /* Cards/panels/tiles */
+  --color-surface-2: #f8f9fa;     /* Alternate surface for subtle contrast */
+  --color-text: black;            /* Body text */
+  --color-heading: black;         /* Headings/titles */
+  --color-text-muted: #6c757d;    /* Metadata/captions */
+  --color-text-subtle: #555555;   /* Descriptions/softer copy */
+  --color-border: #e0e0e0;        /* Dividers & tile borders */
 
-  --nav-color: #a8a9b4;
-  --nav-hover-color: #ffffff;
-  --nav-mobile-background-color: #040b14;
+  /* Brand / accent */
+  --color-accent: #006466;        /* Links, buttons, highlights, icons */
+  --color-on-accent: #ffffff;     /* Text/icons that sit on accent backgrounds */
 
-  --bright-teal: #006466;
-  --mid-teal: #065A60;
-  --mid2-teal: #0B525B;
-  --dark-teal: #144552;
-  --deep-blue: #1B3A4B;
-  --deep-navy: #212F45;
-  --deep-indigo: #272640;
-  --deep-indigo-trans1: #27264067;
-  --deep-indigo-trans2: #2726402c;
-  --white: #FFFFFF;
-  --black: #000000;
-  --dark-purp: #312244;
-  --mid-purp: #3E1F47;
-  --bright-purp: #4D194D;
+  /* Navigation (component-level tokens) */
+  --nav-fg: #a8a9b4;              /* Default nav link color */
+  --nav-fg-active: #ffffff;       /* Hover/active nav link color */
+  --nav-bg: #040b14;              /* Mobile/side nav background */
 
+  /* Effects */
+  --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.1); /* Tile/button hover elevation */
+
+  /* Hero overlay (two-stop gradient over hero image) */
+  --hero-overlay-start: rgba(39, 38, 64, 0.9);
+  --hero-overlay-end:   rgba(20, 69, 82, 0.9);
+
+  /* Accent washes (soft tinted backgrounds for chips/tiles) */
+  --accent-wash-10: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  --accent-wash-40: color-mix(in srgb, var(--color-accent) 40%, transparent);
+
+                /* =========================
+                  Back-compat aliases (map old names → new tokens)
+                  Keep these so existing CSS continues to work.
+                  ========================= */
+                --background-color: var(--color-bg);
+                --surface-color: var(--color-surface);
+                --default-color: var(--color-text);
+                --heading-color: var(--color-heading);
+                --accent-color: var(--color-accent);
+                --contrast-color: var(--color-on-accent);
+
+                --nav-color: var(--nav-fg);
+                --nav-hover-color: var(--nav-fg-active);
+                --nav-mobile-background-color: var(--nav-bg);
+
+                --muted-text-color: var(--color-text-muted);
+                --soft-text-color: var(--color-text-subtle);
+                --border-color: var(--color-border);
+                --tile-bg: var(--color-surface-2);
+                --tile-hover-shadow: var(--shadow-lg);
+
+                /* If older CSS used these tint names, map them to the new washes */
+                --deep-indigo-trans1: var(--accent-wash-10);
+                --deep-indigo-trans2: var(--accent-wash-40);
+
+  /* Global behavior */
   scroll-behavior: smooth;
 }
 
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
-
-.light-background {
-  --background-color: #2726402c;
-  --surface-color: #ffffff;
-}
-
-.dark-background {
-  --background-color: #151427;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --surface-color: #151f2b;
-  --contrast-color: #ffffff;
-}
 
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
@@ -88,7 +97,6 @@ h5,
 h6 {
   font-family: var(--heading-font);
   font-weight: 600;
-  /* Semi Bold */
 }
 
 
@@ -98,7 +106,6 @@ li,
 span {
   font-family: var(--default-font);
   font-weight: 400;
-  /* Regular */
 }
 
 
@@ -143,7 +150,7 @@ span {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #ffffff;
+  border: 6px solid var(--contrast-color);
   border-color: var(--accent-color) transparent var(--accent-color) transparent;
   border-radius: 50%;
   width: 60px;
@@ -246,30 +253,38 @@ span {
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 40px 20px; /* Adjusted for better responsiveness */
+  padding: 40px 40px; 
   overflow: clip;
 }
 
 .section .content-container {
-  max-width: 1200px; /* Restrict content width for larger screens */
-  margin: 0 auto; /* Center content */
-  padding: 0 20px; /* Add padding for smaller screens */
+  max-width: 1200px;
+  margin: 0 auto; 
 }
+
+.featured-section {
+  background-color: color-mix(in srgb, var(--) 20%, transparent);
+}
+
+.alt-section {
+  --background-color: #2726402c;
+  --surface-color: #ffffff;
+}
+
 
 /*--------------------------------------------------------------
 # Global Section Titles
 --------------------------------------------------------------*/
 .section-title {
-  padding-bottom: 20px;
   position: relative;
   text-align: center; /* Center-align titles for consistency */
+  padding: 20px;
 }
 
 .section-title h2 {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 20px;
   padding-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
   position: relative;
 }
 
@@ -279,15 +294,14 @@ span {
   display: block;
   width: 50px;
   height: 3px;
-  background: var(--dark-teal);
-  left: 50%; /* Center the underline */
+  background: var(--accent-color);
+  left: 50%;
   transform: translateX(-50%);
   bottom: 0;
 }
 
 .section-title p {
-  margin-bottom: 0;
-  font-size: 16px; /* Adjust font size for better readability */
+  font-size: 16px; 
   color: var(--nav-color);
 }
 
@@ -344,7 +358,7 @@ span {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(45deg, rgba(39, 38, 64, 0.9), rgba(20, 69, 82, 0.9));
+  background: linear-gradient(45deg, var(--hero-overlay-start), var(--hero-overlay-end));
   /* Gradient overlay */
   z-index: 2;
   /* Overlay above the image */
@@ -354,7 +368,7 @@ span {
   position: relative;
   z-index: 3;
   /* Ensure content is on top of the overlay */
-  color: #ffffff;
+  color: var(--contrast-color);
   /* Optional: Ensure text is readable */
   display: flex;
   flex-wrap: wrap;
@@ -482,62 +496,37 @@ span {
 }
 
 /*--------------------------------------------------------------
-# Tools Section
+# Topics Section
 --------------------------------------------------------------*/
 
-.mini-tile {
-  background-color: var(--deep-indigo-trans1);
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* font-weight: lighter; */
-  text-align: center;
-  height: 80px;
-  padding: 10px;
-  align-content: center;
-  justify-content: space-between;
-  /* Centers the content vertically */
+#research-topics {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;  
+  gap: 8px;                 
 }
 
-
-
-/*--------------------------------------------------------------
-# SOCIAL BUTTONS 
---------------------------------------------------------------*/
-.social-button {
-  display: inline-flex;
-  justify-content: center;
+.topic-tile {
+  background-color: color-mix(in srgb, var(--surface-color) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+  border-radius: 8px;   
+  padding: 4pt;             
+  display: inline-flex;   
   align-items: center;
-  width: 40px;
-  height: 40px;
-  background-color: #1da1f2;
-  /* Replace with your desired background color */
-  border-radius: 50%;
-  text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  justify-content: center;
+  white-space: nowrap;     
+  line-height: 1.1;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.social-button:hover {
-  background-color: #0d8bd8;
-  /* Slightly darker shade for hover effect */
-  transform: scale(1.1);
+/* Optional hover polish */
+.topic-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--default-color), transparent 90%);
 }
-
-.social-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-
-.contact-container {
-  padding-top: 40px;
-  font-size: smaller;
-text-align: center;
-}
-.contact-container em {
-  color: var(--nav-color)
-}
-
 
 /*--------------------------------------------------------------
 # PROJECTS Section
@@ -549,6 +538,7 @@ text-align: center;
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
   padding-bottom: 10px;
+
 }
 
 .projects .container-tiles-other {
@@ -556,11 +546,13 @@ text-align: center;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+  padding-bottom: 10px;
+
 }
 
 .project-tile {
-  background-color: #f8f9fa;
-  border: 1px solid #e0e0e0;
+  background-color: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   border-radius: 8px;
   padding: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -569,11 +561,11 @@ text-align: center;
 
 .project-tile:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
 .project-tile .icon {
-  color: #17a2b8;
+  color: var(--accent-color);
   font-size: 2rem;
   margin-right: 15px;
 }
@@ -589,7 +581,7 @@ text-align: center;
   line-height: 1.15;
   text-align: left;
   font-weight: 150px;
-  color: #555;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
   padding-bottom: 10px;
 }
 
@@ -597,50 +589,43 @@ text-align: center;
 .project-tile .principles {
   font-size: 0.8rem;
   font-weight: 200px;
-  color: #333;
+  color: var(--default-color);
   text-align: right;
   margin: 0;
-  /* Remove any default margin */
   padding: 0;
-  /* Remove any default padding */
 }
 
 .project-tile .tile-header {
   display: flex;
   justify-content: space-between;
-  /* Ensures the icon and link are on opposite ends */
   align-items: center;
-  /* Vertically aligns the icon and button */
   margin-bottom: 10px;
-  /* Adds some spacing below the header */
 }
 
 .project-tile .tile-header .icon {
-  color: #17a2b8;
+  color: var(--accent-color);
   font-size: 2rem;
   flex-shrink: 0;
-  /* Ensures the icon doesn't resize */
 }
 
 .project-tile .tile-header .tile-link-container {
   flex-shrink: 0;
-  /* Prevents the container from resizing */
 }
 
 .project-tile .tile-header .tile-link-container a {
   font-size: 0.8rem;
   font-weight: 500;
-  color: #17a2b8;
+  color: var(--accent-color);
   text-decoration: none;
-  border: 1px solid #17a2b8;
+  border: 1px solid var(--accent-color);
   padding: 5px 10px;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .project-tile .tile-header .tile-link-container a:hover {
-  background-color: #17a2b8;
-  color: #fff;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
 }
 
 /*--------------------------------------------------------------
@@ -663,16 +648,15 @@ text-align: center;
   align-items: center;
   height: 300px;
   background-color: var(--surface-color);
-  border: 1px solid #e0e0e0;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   border-radius: 8px;
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effects for tiles */
 .technologies .technologies-content:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
 .technologies .tile-header h4 {
@@ -686,7 +670,7 @@ text-align: center;
   margin: 5px 0 10px;
   font-size: 0.6rem;
   text-align: center;
-  color: #6c757d;
+  color: var(--nav-color);
 }
 
 .technologies .tile-footer {
@@ -729,15 +713,15 @@ text-align: center;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #f8f9fa;
-  border: 1px solid #e0e0e0;
+  background-color: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .custom-tile:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
 .tile-header h4 {
@@ -751,7 +735,7 @@ text-align: center;
   margin: 5px 0 10px;
   font-size: 0.9rem;
   text-align: center;
-  color: #6c757d;
+  color: var(--nav-color);
 }
 
 .tile-body {
@@ -759,23 +743,23 @@ text-align: center;
 }
 
 .tile-icon {
-  color: #17a2b8;
+  color: var(--accent-color);
 }
 
 .tile-footer .tile-link {
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #17a2b8;
-  border: 1px solid #17a2b8;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
   padding: 5px 10px;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .tile-footer .tile-link:hover {
-  background-color: #17a2b8;
-  color: #fff;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
 }
 
 /*--------------------------------------------------------------
@@ -783,43 +767,43 @@ text-align: center;
 --------------------------------------------------------------*/
 
 .pubs-list .tile-link {
-  display: inline-flex; /* Ensures the text and icon are inline and aligned properly */
-  align-items: center; /* Vertically centers the icon and text */
-  gap: 4px; /* Adds spacing between text and icon */
+  display: inline-flex; 
+  align-items: center;
+  gap: 4px; 
   text-decoration: none;
   font-size: 0.5rem;
   font-weight: 500;
-  color: #17a2b8;
-  border: 1px solid #17a2b8;
-  padding: 4px 8px; /* Ensures enough space inside the button */
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 4px 8px; 
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-left: 5px; /* Adds spacing between the paragraph text and the button */
-  white-space: nowrap; /* Prevents wrapping for the text and icon */
+  margin-left: 5px; 
+  white-space: nowrap; 
 }
 
 .pubs-list .tile-link:hover {
-  background-color: #17a2b8;
-  color: #fff;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
 }
 
 .pubs-list .tile-link i {
-  font-size: 0.6rem; /* Adjust icon size */
+  font-size: 0.6rem;
 }
 .pubs-list p {
-  margin: 0; /* Reset default margin */
-  padding-left: 20px; /* Creates space for the hanging indent */
-  text-indent: -20px; /* Negative value aligns the first line to the left */
-  font-size: smaller; /* Optional: Adjust font size */
-  line-height: 1.5; /* Optional: Adjust line spacing */
+  margin: 0; 
+  padding-left: 20px; 
+  text-indent: -20px; 
+  font-size: smaller; 
+  line-height: 1.5; 
   position: relative;
 }
 
 .pubs-list p a {
-  display: inline-block; /* Ensures the link stays inline */
-  margin-left: 10px; /* Adds space between text and the link */
-  text-indent: 0; /* Prevents hanging indent from affecting the link */
-  vertical-align: middle; /* Aligns the link with the text */
+  display: inline-block; 
+  margin-left: 10px; 
+  text-indent: 0; 
+  vertical-align: middle; 
 }
 
 /* Layout shift support when nav is open */

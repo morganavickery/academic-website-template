@@ -8,8 +8,8 @@
 # Global navigation
 --------------------------------------------------------------*/
 .navigation {
-  color: var(--default-color);
-  background-color: var(--background-color);
+  color: var(--contrast-color);
+  background-color: var(--nav-bg);
   position: fixed;
   top: 0;
   left: -300px;
@@ -54,35 +54,47 @@
   margin: 0 0 20px 0;
 }
 
-hr {
-  border: none;                /* remove default look */
-  border-top: 1px solid #ccc;  /* light gray line */
-  width: 60%;                  /* make it shorter than full width */
-  margin: 0.5rem auto;         /* vertical spacing + center it */
+/* Divider scoped to navigation */
+.navigation hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  width: 60%;
+  margin: 0.5rem auto;
 }
 
-
-.navigation .social-links a {
-  font-size: 16px;
+/*--------------------------------------------------------------
+# Social buttons (scoped to navigation)
+--------------------------------------------------------------*/
+.navigation .social-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in srgb, var(--default-color), transparent 90%);
-  color: var(--default-color);
-  margin: 0 2px;
-  border-radius: 50%;
   width: 40px;
   height: 40px;
-  transition: background 0.3s, color 0.3s;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  margin: 0 2px;
   text-align: center;
+  color: var(--color-on-accent, var(--contrast-color));
 }
 
-.navigation .social-links a:hover {
-  color: var(--contrast-color);
-  background: var(--accent-color);
+.navigation .social-button:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+  transform: scale(1.1);
+  color: var(--color-on-accent, var(--contrast-color));
 }
 
-/* Navigation Toggle Button */
+.navigation .social-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/*--------------------------------------------------------------
+# Navigation Toggle Button
+--------------------------------------------------------------*/
 .navigation .navigation-toggle {
   color: var(--contrast-color);
   background-color: var(--accent-color);
@@ -164,11 +176,27 @@ hr {
   color: var(--accent-color);
 }
 
+/*--------------------------------------------------------------
+# Contact block (scoped to navigation)
+--------------------------------------------------------------*/
+.navigation .contact-container {
+  padding-top: 40px;
+  font-size: smaller;
+  text-align: center;
+}
+
+.navigation .contact-container em {
+  color: var(--nav-color);
+}
+
 /* Hide mobile nav toggle if not needed */
 .mobile-nav-toggle {
   display: none;
 }
 
+/*--------------------------------------------------------------
+# Layout shift when nav is open on wide screens
+--------------------------------------------------------------*/
 @media (min-width: 800px) {
   .navigation {
     left: 0;

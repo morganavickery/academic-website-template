@@ -9,19 +9,5 @@
       "role": "Job Title",
       "institution": "Company Name"
     }
-  ],
-  "contacts": [
-    {
-      "email": "myemail@yahoo.com",
-      "type": "personal"
-    },
-    {
-      "email": "myemail@school.edu",
-      "type": "academic"
-    },
-    {
-      "email": "myemail@mycompany.org",
-      "type": "industry"
-    }
   ]
 }

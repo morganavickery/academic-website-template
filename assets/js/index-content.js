@@ -1,5 +1,9 @@
+/* indexcontent.js */
+"use strict";
+
 // Load homepage sections from JSON files
 document.addEventListener('DOMContentLoaded', () => {
+  loadSiteConfig();
   loadAbout();
   loadResearch();
   loadPublications();
@@ -7,8 +11,51 @@ document.addEventListener('DOMContentLoaded', () => {
   loadTechnologies();
 });
 
+async function loadSiteConfig() {
+  try {
+    const res = await fetch('assets/data/site-config.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Failed to load site-config.json (${res.status})`);
+    const data = await res.json();
+
+    // Apply theme FIRST so the page paints with the chosen colors
+    applyThemeFromConfig(data.theme);
+
+    // Populate hero, etc.
+    const nameEl = document.getElementById('site-name');
+    if (nameEl && data.name) nameEl.textContent = data.name;
+    const taglineEl = document.getElementById('site-tagline');
+    if (taglineEl && data.tagline) taglineEl.textContent = data.tagline;
+
+    const typedHost = document.querySelector('.typed');
+    if (typedHost && Array.isArray(data.typedItems) && data.typedItems.length) {
+      if (window.Typed) {
+        new Typed('.typed', {
+          strings: data.typedItems,
+          typeSpeed: 55,
+          backSpeed: 35,
+          backDelay: 1100,
+          smartBackspace: true,
+          loop: true
+        });
+      } else {
+        let i = 0;
+        typedHost.textContent = data.typedItems[0];
+        setInterval(() => {
+          i = (i + 1) % data.typedItems.length;
+          typedHost.textContent = data.typedItems[i];
+        }, 1600);
+      }
+    }
+  } catch (err) {
+    console.error('Failed to load assets/data/site-config.json', err);
+  }
+}
+
+/* =========================
+   About: assets/data/about.json
+   ========================= */
 function loadAbout() {
-  fetch('assets/data/about.json')
+  fetch('assets/data/about.json', { cache: 'no-store' })
     .then(r => r.json())
     .then(data => {
       const aboutText = document.getElementById('about-text');
@@ -37,26 +84,33 @@ function loadAbout() {
     .catch(err => console.error('Failed to load about.json', err));
 }
 
+/* =========================
+   Research: assets/data/research.json
+   ========================= */
 function loadResearch() {
-  fetch('assets/data/research.json')
+  fetch('assets/data/research.json', { cache: 'no-store' })
     .then(r => r.json())
     .then(data => {
       const container = document.getElementById('research-topics');
       if (!container || !Array.isArray(data.topics)) return;
+
+      container.innerHTML = ''; // reset
+
       data.topics.forEach(topic => {
-        const div = document.createElement('div');
-        div.className = 'mini-tile';
-        const h6 = document.createElement('h6');
-        h6.textContent = topic;
-        div.appendChild(h6);
-        container.appendChild(div);
+        const chip = document.createElement('span');
+        chip.className = 'topic-tile';
+        chip.textContent = topic;
+        container.appendChild(chip);
       });
     })
     .catch(err => console.error('Failed to load research.json', err));
 }
 
+/* =========================
+   Publications: assets/data/publications.json
+   ========================= */
 function loadPublications() {
-  fetch('assets/data/publications.json')
+  fetch('assets/data/publications.json', { cache: 'no-store' })
     .then(r => r.json())
     .then(data => {
       const container = document.getElementById('publications-list');
@@ -78,8 +132,11 @@ function loadPublications() {
     .catch(err => console.error('Failed to load publications.json', err));
 }
 
+/* =========================
+   Projects: assets/data/projects.json
+   ========================= */
 function loadProjects() {
-  fetch('assets/data/projects.json')
+  fetch('assets/data/projects.json', { cache: 'no-store' })
     .then(r => r.json())
     .then(data => {
       const featured = document.getElementById('projects-featured');
@@ -188,8 +245,11 @@ function makeProjectTile(project) {
   return tile;
 }
 
+/* =========================
+   Technologies: assets/data/technologies.json
+   ========================= */
 function loadTechnologies() {
-  fetch('assets/data/technologies.json')
+  fetch('assets/data/technologies.json', { cache: 'no-store' })
     .then(r => r.json())
     .then(data => {
       const container = document.getElementById('technologies-list');
@@ -227,4 +287,35 @@ function loadTechnologies() {
       });
     })
     .catch(err => console.error('Failed to load technologies.json', err));
+}
+
+function applyThemeFromConfig(theme) {
+  if (!theme) return;
+  const root = document.documentElement;
+
+  const c = theme.colors || {};
+  const colorMap = {
+    background: '--background-color',
+    default: '--default-color',
+    heading: '--heading-color',
+    accent: '--accent-color',
+    surface: '--surface-color',
+    contrast: '--contrast-color',
+    nav: '--nav-color',
+    navHover: '--nav-hover-color',
+    navMobileBg: '--nav-mobile-background-color',
+
+    /* NEW: extended theme keys users can set */
+    mutedText: '--muted-text-color',
+    softText: '--soft-text-color',
+    border: '--border-color',
+    tileBg: '--tile-bg',
+    badgeBg: '--badge-bg',
+    heroOverlayStart: '--hero-overlay-start',
+    heroOverlayEnd: '--hero-overlay-end'
+  };
+
+  Object.entries(colorMap).forEach(([key, cssVar]) => {
+    if (c[key]) root.style.setProperty(cssVar, c[key]);
+  });
 }

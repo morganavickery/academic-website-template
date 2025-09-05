@@ -1,0 +1,50 @@
+{
+  "name": "Your Name",
+  "profileImage": "assets/img/profile-headshot.png",
+  "profileImageAlt": "The alt-text for your headshot image",
+  "tagline": "This is my tagline",
+  "typedItems": ["label 1", "idea 2", "thought 3", "concept 4"],
+  "social": {
+    "bluesky": "https://bsky.app/profile/example.bsky.social",
+    "twitter": "https://twitter.com/example",
+    "google_scholar": "https://scholar.google.com/",
+    "github": "https://github.com/example",
+    "linkedin": "https://www.linkedin.com/in/example/"
+  },
+  "contacts": [
+    {
+      "email": "myemail@yahoo.com",
+      "type": "personal"
+    },
+    {
+      "email": "myemail@school.edu",
+      "type": "academic"
+    },
+    {
+      "email": "myemail@mycompany.org",
+      "type": "industry"
+    }
+  ],
+  "analyticsId": "",
+  "theme": {
+    "colors": {
+      "background": "#ffffff",
+      "default": "#111111",
+      "heading": "#111111",
+      "accent": "#006466",
+      "surface": "#ffffff",
+      "contrast": "#ffffff",
+      "nav": "#a8a9b4",
+      "navHover": "#ffffff",
+      "navMobileBg": "#040b14",
+
+      "mutedText": "#6c757d",
+      "softText": "#555555",
+      "border": "#e0e0e0",
+      "tileBg": "#f8f9fa",
+      "badgeBg": "#3E1F47",
+      "heroOverlayStart": "rgba(39,38,64,0.9)",
+      "heroOverlayEnd": "rgba(20,69,82,0.9)"
+    }
+  }
+}
