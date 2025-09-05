@@ -1,7 +1,27 @@
 {
-  "text": "I am an aspiring learning scientist and experience designer with dreams of designing enabling, critical, and multimodal learning environments that recognize and honor youths' bodies.",
+  "text": "This is my bio where I describe my current role, future goals, and research interests.",
   "roles": [
-    { "role": "PhD Graduate", "institution": "Learning Sciences Program at Indiana University - Bloomington" },
-    { "role": "Associate Instructor", "institution": "EDUC-I 251 Learning Theories for Teachers & EDUC-M 101" }
+    {
+      "role": "Role Name",
+      "institution": "Insitution Name"
+    },
+    {
+      "role": "Job Title",
+      "institution": "Company Name"
+    }
+  ],
+  "contacts": [
+    {
+      "email": "myemail@yahoo.com",
+      "type": "personal"
+    },
+    {
+      "email": "myemail@school.edu",
+      "type": "academic"
+    },
+    {
+      "email": "myemail@mycompany.org",
+      "type": "industry"
+    }
   ]
 }

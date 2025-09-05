@@ -74,7 +74,9 @@ document.addEventListener("DOMContentLoaded", function() {
           applySiteConfig();
         }
         setupNavToggle();
+        populateContacts();
         document.dispatchEvent(new Event('navigationLoaded'));
+        
       });
   }
   const footerInclude = document.getElementById('footer-include');

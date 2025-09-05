@@ -1,5 +1,4 @@
 // Load homepage sections from JSON files
-
 document.addEventListener('DOMContentLoaded', () => {
   loadAbout();
   loadResearch();

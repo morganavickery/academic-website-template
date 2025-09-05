@@ -54,6 +54,14 @@
   margin: 0 0 20px 0;
 }
 
+hr {
+  border: none;                /* remove default look */
+  border-top: 1px solid #ccc;  /* light gray line */
+  width: 60%;                  /* make it shorter than full width */
+  margin: 0.5rem auto;         /* vertical spacing + center it */
+}
+
+
 .navigation .social-links a {
   font-size: 16px;
   display: inline-flex;
