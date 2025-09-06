@@ -10,43 +10,6 @@ body {
 }
 
 /*-------------------------------------------------------------------
-  HERO SECTION
--------------------------------------------------------------------*/
-
-.database-hero {
-  width: 100%;
-  min-height: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-  /* The page-wide “hero” for the database uses a themed dark bg */
-  background-color: var(--nav-mobile-background-color);
-}
-
-.database-hero .container {
-  position: relative;
-  z-index: 3;
-  color: var(--contrast-color);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  text-align: center;
-  padding: 20px;
-}
-
-.database-hero h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--contrast-color);
-  margin-top: 10px;
-}
-
-/*-------------------------------------------------------------------
   # DATABASE CONTAINER
 -------------------------------------------------------------------*/
 
@@ -133,7 +96,7 @@ body {
 .card-title {
   font-weight: 500;
   text-align: left;
-  padding: 6px 0; /* reduced vertical padding */
+  padding: 6px 0;
   line-height: 1.1;
   color: var(--accent-color);
   font-family: var(--default-font);

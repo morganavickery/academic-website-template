@@ -1,0 +1,300 @@
+:root {
+  /* =========================
+     Fonts
+     ========================= */
+  --default-font: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Lato", sans-serif;
+
+  /* =========================
+     Semantic color tokens (preferred)
+     ========================= */
+  /* Core surfaces & text */
+  --background-color: #ffffff;            /* Page background (body/sections) */
+  --color-surface: #ffffff;       /* Cards/panels/tiles */
+  --color-surface-2: #f8f9fa;     /* Alternate surface for subtle contrast */
+  --color-text: black;            /* Body text */
+  --color-heading: black;         /* Headings/titles */
+  --color-text-muted: #6c757d;    /* Metadata/captions */
+  --color-text-subtle: #555555;   /* Descriptions/softer copy */
+  --color-border: #e0e0e0;        /* Dividers & tile borders */
+
+  /* Brand / accent */
+  --dark-accent: #151427;         /* Background of nav pane & tile borders */
+  --bright-accent: #006466;        /* Links, buttons, highlights, icons */
+  --color-on-accent: #ffffff;     /* Text/icons that sit on accent backgrounds */
+
+  /* Effects */
+  --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.1); /* Tile/button hover elevation */
+
+  /* Hero overlay (two-stop gradient over hero image) */
+  --hero-overlay-start: var(--dark-accent);
+  --hero-overlay-end: var(--bright-accent);
+
+  /* Accent washes (soft tinted backgrounds for chips/tiles) */
+  --accent-wash-dark: color-mix(in srgb, var(--dark-accent) 20%, transparent);
+  --accent-wash-bright: color-mix(in srgb, var(--bright-accent) 20%, transparent);
+
+  /* Global behavior */
+  scroll-behavior: smooth;
+}
+
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: var(--default-font);
+  
+}
+
+a {
+  color: var(--bright-accent);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--bright-accent), transparent 25%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+}
+
+
+p,
+a,
+li,
+span {
+  font-family: var(--default-font);
+  font-weight: 400;
+}
+
+#page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--contrast-color);
+}
+
+#page-subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--contrast-color);
+}
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+.hero {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero.primary {
+  min-height: 50vh;
+  padding-left: 40px;
+}
+
+.hero.primary .background-container { display: block; }
+
+.hero.secondary {
+  width: 100%;
+  min-height: 20vh;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  padding: 24px 0;  
+}
+
+.hero.secondary .background-container { display: none; }
+
+.section {
+  color: var(--color-text);
+  background-color: var(--background-color);
+  padding: 40px 40px; 
+  overflow: clip;
+}
+
+.alt-section {
+  background-color: var(--accent-wash-dark)
+}
+
+.section .content-container {
+  margin: 0 auto; 
+  max-width: 1200px;
+}
+
+
+/*--------------------------------------------------------------
+# Global Footer
+--------------------------------------------------------------*/
+
+.footer {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-size: 14px;
+  padding: 40px 0;
+  position: relative;
+  border-top: 1px solid color-mix(in srgb, var(--color-text), transparent 90%);
+}
+
+.footer .copyright p {
+  margin-bottom: 0;
+}
+
+.footer .credits {
+  margin-top: 4px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  background: var(--color-bg);
+  transition: all 0.6s ease-out;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid var(--color-on-accent);
+  border-color: var(--bright-accent) transparent var(--bright-accent) transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1.5s linear infinite;
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--bright-accent);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: var(--color-on-accent);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: color-mix(in srgb, var(--bright-accent), transparent 20%);
+  color: var(--color-on-accent);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 750px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  position: relative;
+  text-align: center; /* Center-align titles for consistency */
+  padding: 20px;
+}
+
+.section-title h2 {
+  padding-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  position: relative;
+}
+
+.section-title h2:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--bright-accent);
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.section-title p {
+  font-size: 16px; 
+  color: var(--nav-fg);
+}
+
+/*--------------------------------------------------------------
+# Responsive Adjustments for Sections
+--------------------------------------------------------------*/
+@media (max-width: 750px) {
+  .section {
+    padding: 30px 15px; /* Reduce padding for smaller screens */
+  }
+
+  .section-title h2 {
+    font-size: 24px; /* Adjust title size for smaller screens */
+  }
+
+  .section-title p {
+    font-size: 14px; /* Adjust subtitle size for smaller screens */
+  }
+
+  .section .content-container {
+    padding: 0 10px; /* Reduce padding for smaller screens */
+  }
+}
+
+.content-container p {
+  margin-bottom: 0;
+}
+

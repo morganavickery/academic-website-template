@@ -1,154 +1,171 @@
-/* indexcontent.js */
-"use strict";
+/* =========================
+   INIT: fetch all & render
+   ========================= */
+document.addEventListener('DOMContentLoaded', async () => {
+  const PATHS = {
+    about:        'assets/data/about.json',
+    research:     'assets/data/research.json',
+    publications: 'assets/data/publications.json',
+    projects:     'assets/data/projects.json',
+    technologies: 'assets/data/technologies.json'
+  };
 
-// Load homepage sections from JSON files
-document.addEventListener('DOMContentLoaded', () => {
-  loadSiteConfig();
-  loadAbout();
-  loadResearch();
-  loadPublications();
-  loadProjects();
-  loadTechnologies();
+  try {
+    const [about, research, publications, projects, technologies] = await Promise.all([
+      loadJSON(PATHS.about).catch(() => null),
+      loadJSON(PATHS.research).catch(() => null),
+      loadJSON(PATHS.publications).catch(() => null),
+      loadJSON(PATHS.projects).catch(() => null),
+      loadJSON(PATHS.technologies).catch(() => null)
+    ]);
+
+    renderHero(about);
+    renderAbout(about);
+    renderResearch(research);
+    renderPublications(publications);
+    renderProjects(projects);
+    renderTechnologies(technologies);
+
+  } catch (err) {
+    console.error('Initialization error:', err);
+  }
 });
 
-async function loadSiteConfig() {
-  try {
-    const res = await fetch('assets/data/site-config.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error(`Failed to load site-config.json (${res.status})`);
-    const data = await res.json();
+/**
+ * index-content.js
+ * Single DOM-ready init that fetches all data, then calls per-section renderers.
+ * Hero (site name, tagline, typedItems) is now populated from about.json.
+ */
 
-    // Apply theme FIRST so the page paints with the chosen colors
-    applyThemeFromConfig(data.theme);
+/* =========================
+   HERO (from ABOUT)
+   assets/data/about.json
+   ========================= */
+function renderHero(about) {
+  if (!about) return;
 
-    // Populate hero, etc.
-    const nameEl = document.getElementById('site-name');
-    if (nameEl && data.name) nameEl.textContent = data.name;
-    const taglineEl = document.getElementById('site-tagline');
-    if (taglineEl && data.tagline) taglineEl.textContent = data.tagline;
+  const nameEl = document.getElementById('site-name');
+  const taglineEl = document.getElementById('site-tagline');
 
-    const typedHost = document.querySelector('.typed');
-    if (typedHost && Array.isArray(data.typedItems) && data.typedItems.length) {
-      if (window.Typed) {
-        new Typed('.typed', {
-          strings: data.typedItems,
-          typeSpeed: 55,
-          backSpeed: 35,
-          backDelay: 1100,
-          smartBackspace: true,
-          loop: true
-        });
-      } else {
-        let i = 0;
-        typedHost.textContent = data.typedItems[0];
-        setInterval(() => {
-          i = (i + 1) % data.typedItems.length;
-          typedHost.textContent = data.typedItems[i];
-        }, 1600);
-      }
+  if (nameEl && about.name) nameEl.textContent = String(about.name);
+  if (taglineEl && about.tagline) taglineEl.textContent = String(about.tagline);
+
+  // typed.js (if present on the page)
+  const typedHost = document.querySelector('.typed');
+  if (typedHost && Array.isArray(about.typedItems) && about.typedItems.length) {
+    if (window.Typed) {
+      new Typed('.typed', {
+        strings: about.typedItems,
+        typeSpeed: 60,
+        backSpeed: 30,
+        backDelay: 1200,
+        loop: true
+      });
+    } else {
+      // Fallback: show as plain text
+      typedHost.textContent = about.typedItems.join(' • ');
     }
-  } catch (err) {
-    console.error('Failed to load assets/data/site-config.json', err);
   }
 }
 
 /* =========================
-   About: assets/data/about.json
+   ABOUT
+   assets/data/about.json
    ========================= */
-function loadAbout() {
-  fetch('assets/data/about.json', { cache: 'no-store' })
-    .then(r => r.json())
-    .then(data => {
-      const aboutText = document.getElementById('about-text');
-      if (aboutText && data.text) {
-        aboutText.textContent = data.text;
+function renderAbout(data) {
+  if (!data) return;
+
+  const aboutText = document.getElementById('about-text');
+  if (aboutText && data.text) {
+    aboutText.textContent = data.text;
+  }
+
+  const list = document.getElementById('about-roles');
+  if (list && Array.isArray(data.roles)) {
+    list.innerHTML = '';
+    data.roles.forEach(item => {
+      const p = document.createElement('p');
+
+      if (item.role) {
+        const em = document.createElement('em');
+        em.textContent = item.role;
+        p.appendChild(em);
       }
-      const list = document.getElementById('about-roles');
-      if (list && Array.isArray(data.roles)) {
-        data.roles.forEach(item => {
-          const p = document.createElement('p');
-          if (item.role) {
-            const em = document.createElement('em');
-            em.textContent = item.role;
-            p.appendChild(em);
-          }
-          if (item.institution) {
-            const strong = document.createElement('strong');
-            strong.textContent = item.institution;
-            if (p.childNodes.length > 0) p.append(' | ');
-            p.appendChild(strong);
-          }
-          list.appendChild(p);
-        });
+
+      if (item.institution) {
+        const strong = document.createElement('strong');
+        strong.textContent = item.institution;
+        if (p.childNodes.length > 0) p.append(' | ');
+        p.appendChild(strong);
       }
-    })
-    .catch(err => console.error('Failed to load about.json', err));
+
+      list.appendChild(p);
+    });
+  }
 }
 
 /* =========================
-   Research: assets/data/research.json
+   RESEARCH
+   assets/data/research.json
    ========================= */
-function loadResearch() {
-  fetch('assets/data/research.json', { cache: 'no-store' })
-    .then(r => r.json())
-    .then(data => {
-      const container = document.getElementById('research-topics');
-      if (!container || !Array.isArray(data.topics)) return;
+function renderResearch(data) {
+  const container = document.getElementById('research-topics');
+  if (!container || !data || !Array.isArray(data.topics)) return;
 
-      container.innerHTML = ''; // reset
-
-      data.topics.forEach(topic => {
-        const chip = document.createElement('span');
-        chip.className = 'topic-tile';
-        chip.textContent = topic;
-        container.appendChild(chip);
-      });
-    })
-    .catch(err => console.error('Failed to load research.json', err));
+  container.innerHTML = '';
+  data.topics.forEach(topic => {
+    const chip = document.createElement('span');
+    chip.className = 'topic-tile';
+    chip.textContent = topic;
+    container.appendChild(chip);
+  });
 }
 
 /* =========================
-   Publications: assets/data/publications.json
+   PUBLICATIONS
+   assets/data/publications.json
    ========================= */
-function loadPublications() {
-  fetch('assets/data/publications.json', { cache: 'no-store' })
-    .then(r => r.json())
-    .then(data => {
-      const container = document.getElementById('publications-list');
-      if (!container || !Array.isArray(data.publications)) return;
-      data.publications.forEach(pub => {
-        const p = document.createElement('p');
-        if (pub.citation) p.innerHTML = pub.citation;
-        if (pub.link) {
-          const a = document.createElement('a');
-          a.href = pub.link;
-          a.className = 'tile-link';
-          a.innerHTML = 'Read Now<i class="bi bi-arrow-right"></i>';
-          p.append(' ');
-          p.appendChild(a);
-        }
-        container.appendChild(p);
-      });
-    })
-    .catch(err => console.error('Failed to load publications.json', err));
+function renderPublications(data) {
+  const container = document.getElementById('publications-list');
+  if (!container || !data || !Array.isArray(data.publications)) return;
+
+  container.innerHTML = '';
+  data.publications.forEach(pub => {
+    const p = document.createElement('p');
+    if (pub.citation) p.innerHTML = pub.citation;
+
+    if (pub.link) {
+      const a = document.createElement('a');
+      a.href = pub.link;
+      a.className = 'tile-link';
+      a.innerHTML = 'Read Now<i class="bi bi-arrow-right"></i>';
+      p.append(' ');
+      p.appendChild(a);
+    }
+
+    container.appendChild(p);
+  });
 }
 
 /* =========================
-   Projects: assets/data/projects.json
+   PROJECTS
+   assets/data/projects.json
    ========================= */
-function loadProjects() {
-  fetch('assets/data/projects.json', { cache: 'no-store' })
-    .then(r => r.json())
-    .then(data => {
-      const featured = document.getElementById('projects-featured');
-      const other = document.getElementById('projects-other');
-      if (featured && Array.isArray(data.featured)) {
-        data.featured.forEach(p => featured.appendChild(makeProjectTile(p)));
-      }
-      if (other && Array.isArray(data.other)) {
-        data.other.forEach(p => other.appendChild(makeProjectTile(p)));
-      }
-    })
-    .catch(err => console.error('Failed to load projects.json', err));
+function renderProjects(data) {
+  if (!data) return;
+
+  const featured = document.getElementById('projects-featured');
+  const other = document.getElementById('projects-other');
+
+  if (featured && Array.isArray(data.featured)) {
+    featured.innerHTML = '';
+    data.featured.forEach(p => featured.appendChild(makeProjectTile(p)));
+  }
+
+  if (other && Array.isArray(data.other)) {
+    other.innerHTML = '';
+    data.other.forEach(p => other.appendChild(makeProjectTile(p)));
+  }
 }
 
 function makeProjectTile(project) {
@@ -246,76 +263,47 @@ function makeProjectTile(project) {
 }
 
 /* =========================
-   Technologies: assets/data/technologies.json
+   TECHNOLOGIES
+   assets/data/technologies.json
    ========================= */
-function loadTechnologies() {
-  fetch('assets/data/technologies.json', { cache: 'no-store' })
-    .then(r => r.json())
-    .then(data => {
-      const container = document.getElementById('technologies-list');
-      if (!container || !Array.isArray(data.technologies)) return;
-      data.technologies.forEach(t => {
-        const wrapper = document.createElement('div');
-        const tile = document.createElement('div');
-        tile.className = 'technologies-content h-100 custom-tile';
+function renderTechnologies(data) {
+  const container = document.getElementById('technologies-list');
+  if (!container || !data || !Array.isArray(data.technologies)) return;
 
-        const header = document.createElement('div');
-        header.className = 'tile-header';
-        const h4 = document.createElement('h4');
-        h4.textContent = t.title || '';
-        header.appendChild(h4);
-        if (t.role) {
-          const p = document.createElement('p');
-          p.textContent = t.role;
-          header.appendChild(p);
-        }
-        tile.appendChild(header);
+  container.innerHTML = '';
+  data.technologies.forEach(t => {
+    const wrapper = document.createElement('div');
 
-        if (t.link) {
-          const footer = document.createElement('div');
-          footer.className = 'tile-footer';
-          const a = document.createElement('a');
-          a.href = t.link;
-          a.className = 'tile-link';
-          a.innerHTML = 'Visit Site <i class="bi bi-arrow-right"></i>';
-          footer.appendChild(a);
-          tile.appendChild(footer);
-        }
+    const tile = document.createElement('div');
+    tile.className = 'technologies-content h-100 custom-tile';
 
-        wrapper.appendChild(tile);
-        container.appendChild(wrapper);
-      });
-    })
-    .catch(err => console.error('Failed to load technologies.json', err));
-}
+    const header = document.createElement('div');
+    header.className = 'tile-header';
 
-function applyThemeFromConfig(theme) {
-  if (!theme) return;
-  const root = document.documentElement;
+    const h4 = document.createElement('h4');
+    h4.textContent = t.title || '';
+    header.appendChild(h4);
 
-  const c = theme.colors || {};
-  const colorMap = {
-    background: '--background-color',
-    default: '--default-color',
-    heading: '--heading-color',
-    accent: '--accent-color',
-    surface: '--surface-color',
-    contrast: '--contrast-color',
-    nav: '--nav-color',
-    navHover: '--nav-hover-color',
-    navMobileBg: '--nav-mobile-background-color',
+    if (t.role) {
+      const p = document.createElement('p');
+      p.textContent = t.role;
+      header.appendChild(p);
+    }
+    tile.appendChild(header);
 
-    /* NEW: extended theme keys users can set */
-    mutedText: '--muted-text-color',
-    softText: '--soft-text-color',
-    border: '--border-color',
-    tileBg: '--tile-bg',
-    badgeBg: '--badge-bg',
-    heroOverlayStart: '--hero-overlay-start',
-    heroOverlayEnd: '--hero-overlay-end'
-  };
+    if (t.link) {
+      const footer = document.createElement('div');
+      footer.className = 'tile-footer';
+      const a = document.createElement('a');
+      a.href = t.link;
+      a.className = 'tile-link';
+      a.innerHTML = 'Visit Site <i class="bi bi-arrow-right"></i>';
+      footer.appendChild(a);
+      tile.appendChild(footer);
+    }
 
-  Object.entries(colorMap).forEach(([key, cssVar]) => {
-    if (c[key]) root.style.setProperty(cssVar, c[key]);
+    wrapper.appendChild(tile);
+    container.appendChild(wrapper);
   });
 }
+

@@ -1,24 +1,20 @@
-[
-  {
-    "title": "Resource 1",
-    "description": "This resource is.....",
-    "link": "https://whimsical.com/s25-theory-map-dy5XNBK5mVWkAFXygFvUA",
-    "meta": "Meta-Information",
-    "embed": "url-to-resource.com"
-  },
+{
+  "page-title": "Open-Access Resources",
+  "page-subtitle": "Tools, guides, and live demos",
+  "publications": [
     {
-    "title": "Resource 2",
-    "description": "This resource is.....",
-    "link": "https://whimsical.com/s25-theory-map-dy5XNBK5mVWkAFXygFvUA",
-    "meta": "Meta-Information",
-    "embed": "url-to-resource.com"
-  },
+      "title": "Design Heuristics",
+      "meta": "Guide • Updated 2025",
+      "description": "A compact set of heuristics for learning experience design.",
+      "link": "https://example.com/heuristics"
+    },
     {
-    "title": "Resource 3",
-    "description": "This resource is.....",
-    "link": "https://whimsical.com/s25-theory-map-dy5XNBK5mVWkAFXygFvUA",
-    "meta": "Meta-Information",
-    "embed": "url-to-resource.com"
-  }
-
-]
+      "title": "Interactive Diagram",
+      "meta": "Live Prototype",
+      "description": "Explore the model directly in your browser.",
+      "embed": "https://whimsical.com/your-embed-id",
+      "iframeHeight": 340,
+      "link": "https://whimsical.com/your-board"
+    }
+  ]
+}

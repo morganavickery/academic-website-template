@@ -1,47 +1,45 @@
-// REMOVE this block (it references "data" before it's defined):
-// document.addEventListener('DOMContentLoaded', () => {
-//   renderSocialLinks(data.social);
-// });
-
-async function loadAboutData(url = "assets/data/site-config.json") {
-  const res = await fetch(url, { cache: "no-store" });
+// --- If you don't already have this helper in this file, include it ---
+async function loadJSON(url) {
+  const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) throw new Error(`Failed to load ${url} (${res.status})`);
   return res.json();
 }
 
-function populateContacts(data) {
-  const container = document.getElementById("contact-container");
-  if (!container) return;
+/* =========================
+   Nav identity (from about.json)
+   ========================= */
+function populateNavIdentity(about) {
+  // 1) Site name in the nav
+  const nameEl = document.getElementById('nav-site-name');
+  if (nameEl && about && about.name) {
+    nameEl.textContent = String(about.name);
+  }
 
-  container.innerHTML = ""; // clear existing
-  if (!data || !Array.isArray(data.contacts)) return;
+  // 2) Profile image in the nav
+  const imgEl = document.querySelector('.navigation .profile-img img');
+  if (imgEl) {
+    const src =
+      (about && about.profileImage) ||
+      imgEl.getAttribute('src') ||
+      'assets/img/profile-headshot.png';
+    imgEl.src = src;
 
-  data.contacts.forEach((c) => {
-    if (!c || typeof c.email !== "string" || typeof c.type !== "string") return;
-
-    const p = document.createElement("p");
-
-    const em = document.createElement("em");
-    em.textContent = c.type;
-
-    const strong = document.createElement("strong");
-    strong.id = `contact-${c.type.toLowerCase()}`;
-    strong.textContent = c.email;
-
-    p.appendChild(em);
-    p.appendChild(document.createElement("br"));
-    p.appendChild(strong);
-    container.appendChild(p);
-    container.appendChild(document.createElement("hr"));
-  });
+    const alt =
+      (about && about.profileImageAlt) ||
+      (about && about.name ? `${about.name} profile photo` : imgEl.alt || 'Profile image');
+    imgEl.alt = alt;
+  }
 }
 
+/* =========================
+   Social buttons (from about.social)
+   ========================= */
 function renderSocialLinks(social) {
   const container = document.querySelector('.navigation .social-links');
-  if (!container || !social) return;
+  if (!container) return;
 
-  // Clear any static anchors already in the markup
   container.innerHTML = '';
+  if (!social) return;
 
   const CATALOG = [
     { key: 'bluesky',        icon: 'icon_bluesky.png',       label: 'BlueSky' },
@@ -51,12 +49,12 @@ function renderSocialLinks(social) {
     { key: 'linkedin',       icon: 'icon_linkedin.png',      label: 'LinkedIn' },
     { key: 'academia',       icon: 'icon_academia.png',      label: 'Academia.edu' },
     { key: 'webofscience',   icon: 'icon_webofscience.png',  label: 'Web of Science' },
-    { key: 'researchgate',   icon: 'icon_researchgate.png',  label: 'ResearchGate' },
+    { key: 'researchgate',   icon: 'icon_researchgate.png',  label: 'ResearchGate' }
   ];
 
   CATALOG.forEach(({ key, icon, label }) => {
     const url = social[key];
-    if (!url) return; // skip if not provided
+    if (!url) return;
 
     const a = document.createElement('a');
     a.href = url;
@@ -77,42 +75,63 @@ function renderSocialLinks(social) {
   });
 }
 
-function initNavigationContent() {
-  loadAboutData()
-    .then((data) => {
-      renderSocialLinks(data.social);   // existing
-      populateContacts(data);           // if you use this
-      populateNavIdentity(data);        // <-- add this line
-    })
-    .catch(console.error);
+/* =========================
+   Contacts (from about.contacts)
+   ========================= */
+function populateContacts(about) {
+  const container = document.getElementById('contact-container');
+  if (!container) return;
+
+  container.innerHTML = '';
+  if (!about || !Array.isArray(about.contacts)) return;
+
+  about.contacts.forEach(c => {
+    if (!c || !c.email || !c.type) return;
+
+    const p = document.createElement('p');
+
+    const em = document.createElement('em');
+    em.textContent = c.type;
+
+    const strong = document.createElement('strong');
+    strong.id = `contact-${c.type.toLowerCase()}`;
+    strong.textContent = c.email;
+
+    p.appendChild(em);
+    p.appendChild(document.createElement('br'));
+    p.appendChild(strong);
+
+    container.appendChild(p);
+    container.appendChild(document.createElement('hr'));
+  });
 }
 
-document.addEventListener("DOMContentLoaded", initNavigationContent);
+/* =========================
+   Init (waits for injected nav)
+   ========================= */
+async function initNavigationContent() {
+  try {
+    const about = await loadJSON('assets/data/about.json');
 
-
-document.addEventListener("DOMContentLoaded", initNavigationContent);
-
-function populateNavIdentity(data) {
-  // 1) Site name at the top of the nav
-  const nameEl = document.getElementById('nav-site-name');
-  if (nameEl) {
-    const name = (data && data.name) ? String(data.name) : '';
-    if (name) nameEl.textContent = name;
-  }
-
-  // 2) Profile image in the nav
-  //    Supports optional fields in site-config.json:
-  //    - profileImage: "assets/img/profile-headshot.png"
-  //    - profileImageAlt: "Jane Doe headshot"
-  const imgEl = document.querySelector('.navigation .profile-img img');
-  if (imgEl) {
-    const fallbackSrc = imgEl.getAttribute('src') || 'assets/img/profile-headshot.png';
-    const src = (data && data.profileImage) ? data.profileImage : fallbackSrc;
-    imgEl.src = src;
-
-    const altFromData = (data && data.profileImageAlt) ? data.profileImageAlt
-                    : (data && data.name) ? `${data.name} profile photo`
-                    : imgEl.alt || 'Profile image';
-    imgEl.alt = altFromData;
+    populateNavIdentity(about);
+    renderSocialLinks(about.social);
+    populateContacts(about);
+  } catch (err) {
+    console.error(err);
+    const container = document.getElementById('contact-container');
+    if (container) container.innerHTML = '<p>Unable to load contact info.</p>';
   }
 }
+
+let _navInitDone = false;
+function initNavigationContentOnce() {
+  if (_navInitDone) return;
+  _navInitDone = true;
+  initNavigationContent();
+}
+
+// Try once on DOM ready (in case nav HTML is already present)
+document.addEventListener('DOMContentLoaded', initNavigationContent);
+
+// Also run after navigation.html is injected
+document.addEventListener('navigationLoaded', initNavigationContentOnce);

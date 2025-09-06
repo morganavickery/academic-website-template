@@ -1,13 +1,43 @@
 {
+  "name": "Jane Doe",
+  "tagline": "Researcher, educator, and designer",
+  "typedItems": [
+    "Educator",
+    "Researcher",
+    "Designer",
+    "Advocate"
+  ],
   "text": "This is my bio where I describe my current role, future goals, and research interests.",
   "roles": [
     {
       "role": "Role Name",
-      "institution": "Insitution Name"
+      "institution": "Institution Name"
     },
     {
       "role": "Job Title",
       "institution": "Company Name"
     }
-  ]
+  ],
+  "contacts": [
+    {
+      "email": "academic@example.edu",
+      "type": "academic"
+    },
+    {
+      "email": "industry@example.com",
+      "type": "industry"
+    }
+  ],
+  "social": {
+    "bluesky": "https://bsky.app/profile/example.bsky.social",
+    "twitter": "https://twitter.com/example",
+    "google_scholar": "https://scholar.google.com/",
+    "github": "https://github.com/example",
+    "linkedin": "https://www.linkedin.com/in/example/",
+    "academia": "https://www.academia.edu/example",
+    "webofscience": "https://www.wob.org/example",
+    "researchgate": "https://www.researchgate.com/example"
+  },
+  "profileImage": "assets/img/profile-headshot.png",
+  "profileImageAlt": "Jane Doe headshot"
 }

@@ -9,10 +9,12 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-   <!-- Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -20,11 +22,6 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS Files -->
-  <link href="assets/css/index.css" rel="stylesheet">
-  <link href="assets/css/navigation.css" rel="stylesheet">
-  <link href="assets/css/resources.css" rel="stylesheet">
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -38,30 +35,44 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
+  <!-- Custom CSS Files -->
+  <link href="assets/css/index.css" rel="stylesheet">
+  <link href="assets/css/global.css" rel="stylesheet">
+  <link href="assets/css/navigation.css" rel="stylesheet">
+  <link href="assets/css/resources.css" rel="stylesheet">
+
   <!-- Custom JS Files -->
-  <script src="assets/js/config-loader.js" defer></script>
+     <script src="assets/js/global.js" defer></script>
   <script src="assets/js/index.js" defer></script>
+  <script src="assets/js/index-content.js" defer></script>
+  <script src="assets/js/index-preferences.js" defer></script>
   <script src="assets/js/navigation.js" defer></script>
-  <script src="assets/js/site-config.js" defer></script>
+  <script src="assets/js/navigation-content.js" defer></script>
+
   <script src="assets/js/resources.js" defer></script>
+
 
 </head>
 
 <body class="resources-page">
   <div id="navigation-include"></div>
   <main class="main">
-    <!-- Hero section for database page -->
-    <section id="hero" class="database-hero section" style="background-color: var(--dark-teal);">
+    <!-- Resources (secondary) -->
+    <section id="hero-resources" class="hero secondary">
       <div class="container">
-        <h2 style="display:block; width:100%;">Open-Access Resources</h2>
-        <h3 style="display:block; width:100%;">Subheading for this Page</h3>
+        <h1 id="page-title-res">Open-Access Resources</h1>
+        <h2 id="page-subtitle-res">Subheading for this Page</h2>
       </div>
     </section>
+
+
     <!-- Resource cards populated by resources.js -->
     <section class="resource-container">
       <div id="resource-cards" class="cards-container"></div>
     </section>
+
+
   </main>
 </body>
-</html>
 
+</html>

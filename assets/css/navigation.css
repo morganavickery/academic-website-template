@@ -9,7 +9,8 @@
 --------------------------------------------------------------*/
 .navigation {
   color: var(--contrast-color);
-  background-color: var(--nav-bg);
+  background-color: var(--dark-accent);
+
   position: fixed;
   top: 0;
   left: -300px;
@@ -30,7 +31,7 @@
   margin: 15px auto;
   display: block;
   width: 120px;
-  border: 8px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border: 8px solid color-mix(in srgb, var(--contrast-color), transparent 85%);
 }
 
 .navigation .logo {
@@ -65,6 +66,10 @@
 /*--------------------------------------------------------------
 # Social buttons (scoped to navigation)
 --------------------------------------------------------------*/
+
+.social-links {
+  padding: 10px
+}
 .navigation .social-button {
   display: inline-flex;
   align-items: center;
@@ -75,7 +80,7 @@
   border-radius: 50%;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-  margin: 0 2px;
+  margin: 2px 2px;
   text-align: center;
   color: var(--color-on-accent, var(--contrast-color));
 }
@@ -213,4 +218,10 @@
     margin-left: 0;
     transition: margin-left 0.3s;
   }
+}
+
+/* Smooth transition always */
+.main,
+#footer {
+  transition: margin-left 0.3s;
 }

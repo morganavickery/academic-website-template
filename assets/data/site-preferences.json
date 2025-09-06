@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "mywork": "What do I research?",
+    "projects": "Research Projects",
+    "technologies": "Technologies",
+    "cv": "Curriculum Vitae",
+    "publications": "Publications",
+    "resources": "Open-Access Resources"
+  },
+
+  "theme": {
+    "colors": {
+      "background": "#ffffff",
+      "default": "#111111",
+      "heading": "#111111",
+      "accent": "#006466",
+      "surface": "#ffffff",
+      "contrast": "#ffffff",
+
+      "nav": "#a8a9b4",
+      "navHover": "#ffffff",
+      "navMobileBg": "#040b14",
+
+      "mutedText": "#6c757d",
+      "softText": "#555555",
+      "border": "#e0e0e0",
+      "tileBg": "#f8f9fa",
+      "badgeBg": "#3E1F47",
+      "heroOverlayStart": "rgba(39,38,64,0.9)",
+      "heroOverlayEnd": "rgba(20,69,82,0.9)"
+    }
+  },
+
+  "analyticsId": ""
+}

@@ -10,43 +10,6 @@ body {
 }
 
 /*-------------------------------------------------------------------
-  HERO SECTION
--------------------------------------------------------------------*/
-
-.database-hero {
-  width: 100%;
-  min-height: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-  /* Use themed sidebar/mobile background for a solid hero tone */
-  background-color: var(--nav-mobile-background-color);
-}
-
-.database-hero .container {
-  position: relative;
-  z-index: 3;
-  color: var(--contrast-color);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  text-align: center;
-  padding: 20px;
-}
-
-.database-hero h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--contrast-color);
-  margin-top: 10px;
-}
-
-/*-------------------------------------------------------------------
   # RESOURCES CONTAINER
 -------------------------------------------------------------------*/
 
@@ -128,32 +91,34 @@ body {
   }
 }
 
+.resource-tile.clickable { cursor: pointer; }
+
 /*-------------------------------------------------------------------
   # WHIMSICAL EMBED VARIANT (WIDE CARD)
 -------------------------------------------------------------------*/
 
-.resource-tile--whimsical {
+.resource-tile--embedded {
   flex: 1 1 100%;
   max-width: 100%;
 }
 
 @media (min-width: 700px) {
-  .resource-tile--whimsical {
+  .resource-tile--embedded {
     max-width: 860px;
   }
 
-  .resource-tile--whimsical .resource-whimsical-content {
+  .resource-tile--embedded .resource-embedded-content {
     display: flex;
     gap: 16px;
     align-items: flex-start;
   }
 
-  .resource-tile--whimsical .resource-text {
+  .resource-tile--embedded .resource-text {
     flex-basis: 40%;
     flex-grow: 1;
   }
 
-  .resource-tile--whimsical .whimsical-iframe {
+  .resource-tile--embedded .embedded-iframe {
     flex-basis: 60%;
     flex-grow: 1;
     height: 300px;
@@ -161,12 +126,12 @@ body {
 }
 
 @media (max-width: 699px) {
-  .resource-tile--whimsical .resource-whimsical-content {
+  .resource-tile--embedded .resource-embedded-content {
     display: flex;
     flex-direction: column;
   }
 
-  .resource-tile--whimsical .whimsical-iframe {
+  .resource-tile--embedded .embedded-iframe {
     width: 100%;
     max-width: 100%;
     height: 300px;

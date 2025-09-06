@@ -21,10 +21,6 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Main CSS Files -->
-  <link href="assets/css/index.css" rel="stylesheet">
-  <link href="assets/css/navigation.css" rel="stylesheet">
-
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -37,10 +33,17 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
+  <!-- Custom CSS Files -->
+  <link href="assets/css/index.css" rel="stylesheet">
+  <link href="assets/css/global.css" rel="stylesheet">
+  <link href="assets/css/navigation.css" rel="stylesheet">
+
   <!-- Custom JS Files -->
+  <script src="assets/js/global.js" defer></script>
   <script src="assets/js/index.js" defer></script>
-  <script src="assets/js/navigation.js" defer></script>
   <script src="assets/js/index-content.js" defer></script>
+  <script src="assets/js/index-preferences.js" defer></script>
+  <script src="assets/js/navigation.js" defer></script>
   <script src="assets/js/navigation-content.js" defer></script>
 </head>
 
@@ -48,26 +51,26 @@
   <div id="navigation-include"></div>
   <main class="main">
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-      <div class="background-container">
-        <img src="assets/img/hero-image.jpg" alt="" data-aos="fade-in">
-      </div>
+<!-- HERO (primary) -->
+<section id="hero-home" class="hero primary">
+  <div class="background-container">
+    <img src="assets/img/hero-image.jpg" alt="" data-aos="fade-in">
+  </div>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="headshot-container">
-          <img src="assets/img/profile-headshot.png">
-        </div>
-        <div class="text-container">
-          <p><span class="typed"></span></p>
-          <h2 id="site-name"></h2>
-          <p class="emphasize" id="site-tagline"></p>
-        </div>
-      </div>
-    </section>
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="headshot-container">
+      <img src="assets/img/profile-headshot.png" alt="">
+    </div>
+    <div class="text-container">
+      <p><span class="typed"></span></p>
+      <h1 id="site-name"></h1>
+      <p class="emphasize" id="site-tagline"></p>
+    </div>
+  </div>
+</section>
 
     <!-- About Section -->
-    <section id="about" class="about section featured-section" data-aos="fade-up">
+    <section id="about" class="about section alt-section" data-aos="fade-up">
       <div class="content-container">
         <div class="about-container">
           <p id="about-text"></p>
@@ -80,7 +83,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="publications" class="publications section alt-section" data-aos="fade-up">
+    <section id="publications" class="publications section " data-aos="fade-up">
       <div class="container section-title ">
         <h2>Featured Publications</h2>
       </div>
@@ -91,7 +94,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="research projects section" data-aos="fade-up">
+    <section id="projects" class="research projects section alt-section" data-aos="fade-up">
       <div class="container section-title">
         <h2>Research Projects</h2>
       </div>
@@ -102,7 +105,7 @@
     </section>
 
     <!-- Technologies Section -->
-    <section id="technologies" class="technologies section  alt-section" data-aos="fade-up">
+    <section id="technologies" class="technologies section" data-aos="fade-up">
 
       <div class="container section-title" >
         <h2>Technologies</h2>
@@ -113,7 +116,7 @@
     </section>
     
     <!-- CV Upload -->
-     <section id="cv" class="cv section "data-aos="fade-up">
+     <section id="cv" class="cv section alt-section"data-aos="fade-up">
       <div class="container section-title" >
         <h2>Curriculum Vitae</h2>
       </div>
