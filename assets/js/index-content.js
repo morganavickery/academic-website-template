@@ -168,6 +168,20 @@ function renderProjects(data) {
   }
 }
 
+// Normalize anything like "search-heart", "bi-search-heart", or "bi bi-search-heart"
+// into a clean class string: "bi bi-search-heart"
+function normalizeBiIconClass(raw, fallback = 'bi-kanban') {
+  if (!raw || typeof raw !== 'string') return `bi ${fallback}`;
+  const text = raw.trim();
+
+  // If the string already contains a token like "bi-xyz", extract it
+  const match = text.match(/bi-[\w-]+/);
+  const name  = match ? match[0] : (text.startsWith('bi-') ? text : `bi-${text}`);
+
+  return `bi ${name}`;
+}
+
+
 function makeProjectTile(project) {
   const tile = document.createElement('div');
   tile.className = 'project-tile';
@@ -178,9 +192,12 @@ function makeProjectTile(project) {
 
     const iconWrap = document.createElement('div');
     iconWrap.className = 'icon flex-shrink-0';
+
     const icon = document.createElement('i');
-    icon.className = project.icon ? `bi ${project.icon}` : 'bi';
+    icon.className = normalizeBiIconClass(project.icon, 'bi-kanban'); // <-- here
+    icon.setAttribute('aria-hidden', 'true');
     iconWrap.appendChild(icon);
+
     header.appendChild(iconWrap);
 
     const linkWrap = document.createElement('div');
@@ -190,17 +207,23 @@ function makeProjectTile(project) {
     a.className = 'tile-link';
     a.innerHTML = '<i class="bi bi-arrow-right"></i>';
     linkWrap.appendChild(a);
+
     header.appendChild(linkWrap);
     tile.appendChild(header);
   } else {
+    // no link → still show icon next to content
     const iconWrap = document.createElement('div');
     iconWrap.className = 'icon flex-shrink-0';
+
     const icon = document.createElement('i');
-    icon.className = project.icon ? `bi ${project.icon}` : 'bi';
+    icon.className = normalizeBiIconClass(project.icon, 'bi-kanban'); // <-- here
+    icon.setAttribute('aria-hidden', 'true');
+
     iconWrap.appendChild(icon);
     tile.appendChild(iconWrap);
   }
 
+  // ... keep the rest of your function (title, description, bullets, role, principles) ...
   const content = document.createElement('div');
   const title = document.createElement('h4');
   title.className = 'title';
@@ -297,7 +320,7 @@ function renderTechnologies(data) {
       const a = document.createElement('a');
       a.href = t.link;
       a.className = 'tile-link';
-      a.innerHTML = 'Visit Site <i class="bi bi-arrow-right"></i>';
+      a.innerHTML = 'Visit Site<i class="bi bi-arrow-right"></i>';
       footer.appendChild(a);
       tile.appendChild(footer);
     }
