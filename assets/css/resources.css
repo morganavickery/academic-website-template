@@ -27,6 +27,9 @@ body {
   gap: 10px;
   justify-content: center;
 }
+.hero.secondary .container {
+  flex-direction:column;
+}
 
 /*-------------------------------------------------------------------
   # RESOURCE TILES
